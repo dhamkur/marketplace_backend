@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: campaign_orders
+#
+#  id             :bigint           not null, primary key
+#  campaign_id    :bigint
+#  status         :string
+#  sub_total      :decimal(, )      default(0.0)
+#  tax_amount     :decimal(, )      default(0.0)
+#  tax_id         :bigint
+#  payment_method :string
+#  total_payment  :decimal(, )      default(0.0)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  campaign: one
+  status: MyString
+  sub_total: 9.99
+  tax_amount: 9.99
+  payment_method: MyString
+  total_payment: 9.99
+
+two:
+  campaign: two
+  status: MyString
+  sub_total: 9.99
+  tax_amount: 9.99
+  payment_method: MyString
+  total_payment: 9.99

@@ -10,4 +10,5 @@
 #  updated_at    :datetime         not null
 #
 class Wallet < ApplicationRecord
+  belongs_to :userable, polymorphic: true
 end

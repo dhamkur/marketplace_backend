@@ -10,14 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_09_120249) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_09_133731) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advertisement_placements", force: :cascade do |t|
+    t.bigint "advertisement_id"
+    t.string "name"
+    t.decimal "amount", default: "0.0"
+    t.string "duration"
+    t.text "image_data"
+    t.integer "available_slot", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advertisement_id"], name: "index_advertisement_placements_on_advertisement_id"
+  end
+
+  create_table "advertisements", force: :cascade do |t|
+    t.string "name"
+    t.string "page_type"
+    t.decimal "starting_price", default: "0.0"
+    t.boolean "is_available", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "campaign_orders", force: :cascade do |t|
+    t.bigint "campaign_id"
+    t.string "status"
+    t.decimal "sub_total", default: "0.0"
+    t.decimal "tax_amount", default: "0.0"
+    t.bigint "tax_id"
+    t.string "payment_method"
+    t.decimal "total_payment", default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_campaign_orders_on_campaign_id"
+    t.index ["tax_id"], name: "index_campaign_orders_on_tax_id"
+  end
+
+  create_table "campaigns", force: :cascade do |t|
+    t.bigint "merchant_id"
+    t.bigint "advertisement_placement_id"
+    t.string "name"
+    t.text "image_data"
+    t.string "destination_link"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "duration"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advertisement_placement_id"], name: "index_campaigns_on_advertisement_placement_id"
+    t.index ["merchant_id"], name: "index_campaigns_on_merchant_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -69,6 +120,49 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_120249) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_merchants_on_email", unique: true
     t.index ["reset_password_token"], name: "index_merchants_on_reset_password_token", unique: true
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.integer "quantity", default: 0
+    t.decimal "amount", default: "0.0"
+    t.decimal "delivery_fee", default: "0.0"
+    t.decimal "total_amount", default: "0.0"
+    t.string "delivery_tracking_code"
+    t.string "status"
+    t.string "delivery_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "promotion_id"
+    t.string "code"
+    t.string "applied_promo"
+    t.decimal "sub_total", default: "0.0"
+    t.decimal "discount", default: "0.0"
+    t.decimal "total_payment", default: "0.0"
+    t.text "address"
+    t.string "city"
+    t.string "state"
+    t.string "zip_code"
+    t.string "country"
+    t.decimal "used_wallet", default: "0.0"
+    t.string "status"
+    t.string "payment_method"
+    t.decimal "total_delivery_fee", default: "0.0"
+    t.decimal "tax_amount", default: "0.0"
+    t.bigint "tax_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_orders_on_code"
+    t.index ["promotion_id"], name: "index_orders_on_promotion_id"
+    t.index ["tax_id"], name: "index_orders_on_tax_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -220,8 +314,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_120249) do
     t.index ["userable_id"], name: "index_withdrawals_on_userable_id"
   end
 
+  add_foreign_key "advertisement_placements", "advertisements"
+  add_foreign_key "campaign_orders", "campaigns"
+  add_foreign_key "campaign_orders", "taxes"
+  add_foreign_key "campaigns", "advertisement_placements"
+  add_foreign_key "campaigns", "merchants"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
+  add_foreign_key "orders", "promotions"
+  add_foreign_key "orders", "taxes"
+  add_foreign_key "orders", "users"
   add_foreign_key "product_variants", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "merchants"

@@ -12,4 +12,7 @@
 #  updated_at    :datetime         not null
 #
 class TopUp < ApplicationRecord
+  STATUS = ["pending", "completed", "canceled"]
+
+  validates :code, uniqueness: { case_sensitive: false }
 end

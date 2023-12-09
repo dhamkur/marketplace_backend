@@ -1,0 +1,68 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id                 :bigint           not null, primary key
+#  user_id            :bigint
+#  promotion_id       :bigint
+#  code               :string
+#  applied_promo      :string
+#  sub_total          :decimal(, )      default(0.0)
+#  discount           :decimal(, )      default(0.0)
+#  total_payment      :decimal(, )      default(0.0)
+#  address            :text
+#  city               :string
+#  state              :string
+#  zip_code           :string
+#  country            :string
+#  used_wallet        :decimal(, )      default(0.0)
+#  status             :string
+#  payment_method     :string
+#  total_delivery_fee :decimal(, )      default(0.0)
+#  tax_amount         :decimal(, )      default(0.0)
+#  tax_id             :bigint
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+one:
+  user: one
+  promotion: one
+  code: MyString
+  applied_promo: MyString
+  sub_total: 9.99
+  discount: 9.99
+  total_payment: 9.99
+  address: MyText
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  country: MyString
+  used_wallet: 9.99
+  status: MyString
+  payment_method: MyString
+  total_delivery_fee: 9.99
+  tax_amount: 9.99
+  tax: one
+  delivery_method: MyString
+
+two:
+  user: two
+  promotion: two
+  code: MyString
+  applied_promo: MyString
+  sub_total: 9.99
+  discount: 9.99
+  total_payment: 9.99
+  address: MyText
+  city: MyString
+  state: MyString
+  zip_code: MyString
+  country: MyString
+  used_wallet: 9.99
+  status: MyString
+  payment_method: MyString
+  total_delivery_fee: 9.99
+  tax_amount: 9.99
+  tax: two
+  delivery_method: MyString

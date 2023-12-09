@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: user_banks
+#
+#  id             :bigint           not null, primary key
+#  user_id        :bigint
+#  bank_id        :bigint
+#  account_holder :string
+#  account_number :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  bank: one
+  account_holder: MyString
+  account_number: MyString
+
+two:
+  user: two
+  bank: two
+  account_holder: MyString
+  account_number: MyString

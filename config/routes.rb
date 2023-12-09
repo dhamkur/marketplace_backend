@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :merchants
+  devise_for :users
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  scope module: "pages" do
+    resources :homes, only: :index
+  end
+
+  root "pages/homes#index"
 end

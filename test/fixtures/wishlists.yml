@@ -1,0 +1,18 @@
+# == Schema Information
+#
+# Table name: wishlists
+#
+#  id         :bigint           not null, primary key
+#  user_id    :bigint
+#  product_id :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  user: one
+  product: one
+
+two:
+  user: two
+  product: two

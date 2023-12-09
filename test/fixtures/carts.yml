@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: carts
+#
+#  id            :bigint           not null, primary key
+#  userable_id   :bigint
+#  userable_type :string
+#  total_product :integer          default(0)
+#  total_amount  :decimal(, )      default(0.0)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+one:
+  userable_id: 
+  userable_type: MyString
+  total_product: 1
+  total_amount: 9.99
+
+two:
+  userable_id: 
+  userable_type: MyString
+  total_product: 1
+  total_amount: 9.99

@@ -11,4 +11,5 @@
 #  updated_at    :datetime         not null
 #
 class Cart < ApplicationRecord
+  belongs_to :userable, polymorphic: true
 end

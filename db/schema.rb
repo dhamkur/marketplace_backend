@@ -133,6 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_120249) do
     t.string "userable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_top_ups_on_code"
     t.index ["userable_id"], name: "index_top_ups_on_userable_id"
   end
 

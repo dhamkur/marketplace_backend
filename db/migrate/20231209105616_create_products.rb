@@ -8,10 +8,9 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.decimal :starting_price, default: 0
       t.string :slug
       t.decimal :delivery_fee, default: 0
+      t.index :slug
 
       t.timestamps
     end
-
-    add_index :products, :slug
   end
 end

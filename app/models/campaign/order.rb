@@ -4,6 +4,7 @@
 #
 #  id             :bigint           not null, primary key
 #  campaign_id    :bigint
+#  code           :string
 #  status         :string
 #  sub_total      :decimal(, )      default(0.0)
 #  tax_amount     :decimal(, )      default(0.0)

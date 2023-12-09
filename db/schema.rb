@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_133731) do
 
   create_table "campaign_orders", force: :cascade do |t|
     t.bigint "campaign_id"
+    t.string "code"
     t.string "status"
     t.decimal "sub_total", default: "0.0"
     t.decimal "tax_amount", default: "0.0"
@@ -52,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_133731) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["campaign_id"], name: "index_campaign_orders_on_campaign_id"
+    t.index ["code"], name: "index_campaign_orders_on_code"
     t.index ["tax_id"], name: "index_campaign_orders_on_tax_id"
   end
 

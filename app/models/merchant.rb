@@ -17,6 +17,7 @@
 #  instagram              :string
 #  tiktok                 :string
 #  website                :string
+#  status                 :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -25,4 +26,6 @@ class Merchant < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  include ImageUploader::Attachment(:avatar)
 end

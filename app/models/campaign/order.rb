@@ -15,5 +15,7 @@
 #  updated_at     :datetime         not null
 #
 class Campaign::Order < ApplicationRecord
+  Transaction::ORDER
+
   belongs_to :campaign
 end

@@ -6,6 +6,9 @@ class CreateWalletHistories < ActiveRecord::Migration[7.0]
       t.decimal :amount, default: 0
       t.bigint :transactionable_id, index: true
       t.string :transactionable_type
+      t.string :status
+      t.string :code, index: true
+      t.string :history_type
 
       t.timestamps
     end

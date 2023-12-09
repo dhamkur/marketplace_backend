@@ -118,6 +118,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_133731) do
     t.string "instagram"
     t.string "tiktok"
     t.string "website"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_merchants_on_email", unique: true
@@ -183,6 +184,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_133731) do
     t.decimal "amount", default: "0.0"
     t.decimal "discount", default: "0.0"
     t.integer "stock", default: 0
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_product_variants_on_product_id"
@@ -196,6 +198,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_133731) do
     t.decimal "starting_price", default: "0.0"
     t.string "slug"
     t.decimal "delivery_fee", default: "0.0"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
@@ -279,8 +282,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_133731) do
     t.decimal "amount", default: "0.0"
     t.bigint "transactionable_id"
     t.string "transactionable_type"
+    t.string "status"
+    t.string "code"
+    t.string "history_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_wallet_histories_on_code"
     t.index ["transactionable_id"], name: "index_wallet_histories_on_transactionable_id"
     t.index ["wallet_id"], name: "index_wallet_histories_on_wallet_id"
   end
@@ -311,8 +318,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_133731) do
     t.string "account_number"
     t.decimal "amount", default: "0.0"
     t.string "status"
+    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_withdrawals_on_code"
     t.index ["userable_id"], name: "index_withdrawals_on_userable_id"
   end
 

@@ -6,6 +6,7 @@ class CreateProductVariants < ActiveRecord::Migration[7.0]
       t.decimal :amount, default: 0
       t.decimal :discount, default: 0
       t.integer :stock, default: 0
+      t.string :status
 
       t.timestamps
     end

@@ -10,4 +10,5 @@
 #  updated_at :datetime         not null
 #
 class Tax < ApplicationRecord
+  TYPE = ["percentage", "normal_amount"]
 end

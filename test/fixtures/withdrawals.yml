@@ -10,6 +10,7 @@
 #  account_number :string
 #  amount         :decimal(, )      default(0.0)
 #  status         :string
+#  code           :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

@@ -10,6 +10,7 @@
 #  starting_price :decimal(, )      default(0.0)
 #  slug           :string
 #  delivery_fee   :decimal(, )      default(0.0)
+#  status         :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #

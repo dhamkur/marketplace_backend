@@ -25,7 +25,9 @@
 #  updated_at         :datetime         not null
 #
 class Order < ApplicationRecord
+  Transaction::ORDER
+
   belongs_to :user
-  belongs_to :promotion
-  belongs_to :tax
+  belongs_to :promotion, optional: true
+  belongs_to :tax, optional: true
 end

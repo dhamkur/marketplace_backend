@@ -11,4 +11,5 @@
 #  updated_at     :datetime         not null
 #
 class Advertisement < ApplicationRecord
+  TYPE = ["home_page", "product_page", "cart_page", "checkout_page"]
 end

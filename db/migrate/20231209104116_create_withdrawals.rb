@@ -8,6 +8,7 @@ class CreateWithdrawals < ActiveRecord::Migration[7.0]
       t.string :account_number
       t.decimal :amount, default: 0
       t.string :status
+      t.string :code, index: true
 
       t.timestamps
     end

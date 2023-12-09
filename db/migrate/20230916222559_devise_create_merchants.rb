@@ -41,6 +41,7 @@ class DeviseCreateMerchants < ActiveRecord::Migration[7.0]
       t.string :instagram
       t.string :tiktok
       t.string :website
+      t.string :status
 
       t.timestamps null: false
     end

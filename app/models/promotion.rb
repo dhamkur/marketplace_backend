@@ -11,4 +11,5 @@
 #  updated_at :datetime         not null
 #
 class Promotion < ApplicationRecord
+  TYPE = ["percentage", "normal_amount"]
 end

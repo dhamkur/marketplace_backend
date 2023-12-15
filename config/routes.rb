@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "pages/homes#index"
+
   devise_for :merchants, controllers: {
     sessions: "merchants/sessions",
     registrations: "merchants/registrations"
@@ -13,5 +15,9 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :show]
   end
 
-  root "pages/homes#index"
+  devise_scope :user do
+    namespace :users do
+      resources :carts, except: [:new, :edit]
+    end  
+  end
 end

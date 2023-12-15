@@ -12,4 +12,6 @@
 #
 class Cart < ApplicationRecord
   belongs_to :userable, polymorphic: true
+
+  has_many :items, class_name: "Cart::Item"
 end

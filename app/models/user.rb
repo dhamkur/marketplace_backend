@@ -21,4 +21,29 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   include ImageUploader::Attachment(:avatar)
+
+  has_one :cart, dependent: :destroy, foreign_key: "userable_id"
+  has_one :wallet, dependent: :destroy, foreign_key: "userable_id"
+
+  has_many :orders, dependent: :destroy
+  has_many :top_ups, dependent: :destroy
+  has_many :wishlists, dependent: :destroy
+  has_many :withdrawals, dependent: :destroy
+  has_many :wallet_histories, dependent: :destroy
+
+  after_create :set_cart
+
+  def set_cart
+    Cart.create(
+      userable_id: self.id,
+      userable_type: self.class.name
+    ) if self.cart.blank?
+  end
+
+  def set_wallet
+    Wallet.create(
+      userable_id: self.id,
+      userable_type: self.class.name
+    ) if self.wallet.blank?
+  end
 end

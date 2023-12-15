@@ -7,7 +7,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <%= form_with url: products_path, html: { method: :get, class: "d-flex me-auto" },
-          data: { turbo_frame: "tables", turbo_stream: true, controller: "form", form_target: "source" } do |f| %>
+          data: { turbo_frame: "tables", turbo_stream: true, turbo_action: "advance",
+          controller: "form", form_target: "source" } do |f| %>
         <input class="form-control me-2" name="q[name_cont]" type="search" placeholder="Search" />
         <button class="btn btn-outline-success" type="submit">Search</button>
       <% end %>

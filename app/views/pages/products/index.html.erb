@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body">
           <%= search_form_for @search, url: products_path, data: { turbo_frame: "tables",
-              turbo_stream: true, controller: "form", form_target: "source" } do |f| %>
+              turbo_stream: true, turbo_action: "advance", controller: "form", form_target: "source" } do |f| %>
             <div class="mb-3">
               <a class="fw-bolder text-dark text-decoration-none" data-bs-toggle="collapse" href="#category-collapser" role="button">
                 Category

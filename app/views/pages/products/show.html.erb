@@ -7,8 +7,8 @@
         </div>
         <div class="col-6">
           <h2><%= @object.name %></h2>
-          <% @object.variants.each do |variant| %>
-            <div class="form-check form-check-inline" data-controller="variant">
+          <% @object.variants.order(name: :asc).each do |variant| %>
+            <div class="form-check" data-controller="variant">
               <input class="form-check-input"
                 type="radio"
                 name="variant"
@@ -18,7 +18,9 @@
                 data-price="<%= variant.amount %>"
                 data-stock="<%= variant.stock %>"
                 data-action="input->variant#select" />
-              <label class="form-check-label" for="variant-<%= variant.id %>"><%= variant.name %></label>
+              <label class="form-check-label" for="variant-<%= variant.id %>">
+                <%= "#{variant.name} - #{money(variant.amount)}" %>
+              </label>
             </div>
           <% end %>
 
@@ -33,16 +35,19 @@
     <div class="col-3">
       <div class="card">
         <div class="card-body">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Quantity</label>
-            <input type="number" name="quantity" min="1" class="form-control" value="1" />
-            <input type="hidden" name="variant_id" />
-            <input type="hidden" name="product_id" />
-          </div>
+          <%= form_with url: users_carts_path, html: { method: :post },
+              data: { turbo: false } do |f| %>
+            <div class="mb-3">
+              <label class="form-label">Quantity</label>
+              <input type="number" name="quantity" min="1" class="form-control" value="1" />
+              <%= f.hidden_field :variant_id %>
+              <%= f.hidden_field :product_id, value: @object.id %>
+            </div>
 
-          <div class="d-grid">
-            <button type="button" class="btn btn-primary">Add to Cart</button>
-          </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

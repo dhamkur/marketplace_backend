@@ -14,6 +14,7 @@
 #  delivery_method        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  product_variant_id     :bigint
 #
 
 one:

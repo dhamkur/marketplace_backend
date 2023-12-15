@@ -14,8 +14,10 @@
 #  delivery_method        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  product_variant_id     :bigint
 #
 class Order::Item < ApplicationRecord
   belongs_to :order
   belongs_to :product
+  belongs_to :variant, class_name: "Product::Variant"
 end

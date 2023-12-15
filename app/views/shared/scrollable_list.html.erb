@@ -1,0 +1,6 @@
+<%= turbo_frame_tag "products-page-#{@pagy.page}" do %>
+  <div class="row">
+    <%= render partial: "shared/product", collection: @objects %>
+  </div>
+  <%= render "shared/next_page" %>
+<% end %>

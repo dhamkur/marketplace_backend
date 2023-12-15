@@ -13,5 +13,7 @@
 #  updated_at :datetime         not null
 #
 class Product::Variant < ApplicationRecord
+  STATUS = ["in_stock", "out_of_stock"]
+
   belongs_to :product
 end

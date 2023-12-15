@@ -19,4 +19,12 @@ class Product < ApplicationRecord
 
   belongs_to :merchant
   belongs_to :category
+
+  has_many :variants, class_name: "Product::Variant"
+
+  before_save :set_slug
+
+  def set_slug
+    self.slug = self.name.gsub(" ", "-").downcase if self.name.present?
+  end
 end

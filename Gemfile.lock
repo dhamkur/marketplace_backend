@@ -101,6 +101,8 @@ GEM
     down (5.4.1)
       addressable (~> 2.8)
     erubi (1.12.0)
+    faker (3.2.2)
+      i18n (>= 1.8.11, < 2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -141,6 +143,7 @@ GEM
     nokogiri (1.15.4-arm64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.2.0)
     pg (1.5.3)
     public_suffix (5.0.3)
     puma (5.6.7)
@@ -178,6 +181,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    ransack (3.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     redis (4.8.1)
     regexp_parser (2.8.1)
     reline (0.3.8)
@@ -187,6 +194,8 @@ GEM
       railties (>= 5.2)
     rexml (3.2.6)
     rubyzip (2.3.2)
+    seedbank (0.5.0)
+      rake (>= 10.0)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -239,12 +248,16 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9, >= 4.9.2)
+  faker (~> 3.2, >= 3.2.2)
   importmap-rails
   jbuilder
+  pagy (~> 6.2)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.6)
+  ransack (= 3.2.1)
   redis (~> 4.0)
+  seedbank (~> 0.5.0)
   selenium-webdriver
   shrine (~> 3.5)
   sprockets-rails

@@ -1,0 +1,58 @@
+<section id="products">
+  <div class="row">
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <%= search_form_for @search, url: products_path, data: { turbo_frame: "tables",
+              turbo_stream: true, controller: "form", form_target: "source" } do |f| %>
+            <div class="mb-3">
+              <a class="fw-bolder text-dark text-decoration-none" data-bs-toggle="collapse" href="#category-collapser" role="button">
+                Category
+              </a>
+              <div class="collapse show mt-3" id="category-collapser">
+                <% @categories.each do |category| %>
+                  <div class="form-check">
+                    <%= f.check_box :category_id_in, { multiple: true, class: "form-check-input",
+                        data: { action: "input->form#search" } }, category.id, false %>
+                    <label class="form-check-label" for="books">
+                      <%= category.name %>
+                    </label>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <a class="fw-bolder text-dark text-decoration-none" data-bs-toggle="collapse" href="#category-collapser" role="button">
+                Price Range
+              </a>
+              <div class="collapse show mt-3" id="category-collapser">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label class="form-label">Min</label>
+                    <%= f.number_field :variants_amount_gteq, class: "form-control", id: "min",
+                        data: { action: "input->form#search" } %>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Max</label>
+                    <%= f.number_field :variants_amount_lteq, class: "form-control", id: "max",
+                        data: { action: "input->form#search" } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-9">
+      <%= turbo_frame_tag "tables" do %>
+        <div class="row">
+          <%= render partial: "shared/product", collection: @objects %>
+        </div>
+        <%= render "shared/pagy", pagy: @pagy %>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -39,13 +39,28 @@ class Users::CartsController < UserController
     redirect_back(fallback_location: products_path, notice: message)
   end
 
-  def update;end
+  def update
+    case params[:type]
+    when "selection"
+      is_selected = params[:is_selected] == "on" ? true : false
 
-  def destroy;end
+      @object.update(is_selected: is_selected)
+    when "quantity"
+      @object.update(quantity: params[:quantity])
+    end
+
+    simple_stream("update", "summary", "users/carts/summary")
+  end
+
+  def destroy
+    @object.destroy
+
+    redirect_back(fallback_location: users_carts_path)
+  end
 
   private
 
   def find_object
-    @object = current_user.cart.items.find_by(id: params[:id])
+    @object = Cart::Item.find_by(id: params[:id])
   end
 end

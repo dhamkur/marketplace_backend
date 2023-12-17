@@ -1,0 +1,14 @@
+<%= turbo_frame_tag "summary" do %>
+  <table class="table table-borderless">
+    <tr>
+      <td>Total Items</td>
+      <td>:</td>
+      <td class="text-end"><%= current_user.cart.items.selected.size %></td>
+    </tr>
+    <tr>
+      <td>Sub Total</td>
+      <td>:</td>
+      <td class="text-end"><%= money(current_user.cart.total_amount) %></td>
+    </tr>
+  </table>
+<% end %>

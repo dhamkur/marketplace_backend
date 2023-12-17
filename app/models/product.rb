@@ -21,6 +21,7 @@ class Product < ApplicationRecord
   belongs_to :category
 
   has_many :variants, class_name: "Product::Variant"
+  has_many :photos, foreign_key: "photoable_id"
 
   before_save :set_slug
 

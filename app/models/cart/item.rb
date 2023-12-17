@@ -20,10 +20,17 @@ class Cart::Item < ApplicationRecord
 
   scope :selected, -> { where(is_selected: true) }
 
+  before_save :recalculate_item_total_amount
+
   after_save :recalculate_total_amount_and_total_product
+  after_destroy :recalculate_total_amount_and_total_product
+
+  def recalculate_item_total_amount
+    self.total_amount = self.quantity * self.amount
+  end
 
   def recalculate_total_amount_and_total_product
-    all_products = cart.items.selected.sum(:product_id)
+    all_products = cart.items.selected.size
     all_amounts  = cart.items.selected.sum(:total_amount)
 
     self.cart.update(total_amount: all_amounts, total_product: all_products)

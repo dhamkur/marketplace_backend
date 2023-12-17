@@ -8,7 +8,8 @@ class Users::CartsController < UserController
     variant = Product::Variant.find_by(id: params[:variant_id])
 
     if variant.present? && variant.product.present?
-      message = "Success added item to cart"
+      alert = :notice
+      message = "Item has been added to cart"
       quantity = params[:quantity].to_i
       item = Cart::Item.find_by(
         cart_id: cart.id,
@@ -33,10 +34,11 @@ class Users::CartsController < UserController
         )
       end
     else
-      message = "Failed add item to cart"
+      alert = :alert
+      message = "Failed add item to cart or variant not selected"
     end
 
-    redirect_back(fallback_location: products_path, notice: message)
+    redirect_back(fallback_location: products_path, alert => message)
   end
 
   def update
@@ -55,7 +57,7 @@ class Users::CartsController < UserController
   def destroy
     @object.destroy
 
-    redirect_back(fallback_location: users_carts_path)
+    redirect_back(fallback_location: users_carts_path, notice: "Item has been removed")
   end
 
   private

@@ -17,7 +17,11 @@
 #  product_variant_id     :bigint
 #
 class Order::Item < ApplicationRecord
+  include General
+
   belongs_to :order
   belongs_to :product
   belongs_to :variant, class_name: "Product::Variant"
+
+  before_save :set_status
 end

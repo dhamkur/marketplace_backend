@@ -25,9 +25,14 @@
 #  updated_at         :datetime         not null
 #
 class Order < ApplicationRecord
+  include General
+
   Transaction::ORDER
 
   belongs_to :user
   belongs_to :promotion, optional: true
   belongs_to :tax, optional: true
+
+  before_save :set_status
+  before_save do set_code("INV") end
 end

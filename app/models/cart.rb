@@ -11,6 +11,8 @@
 #  updated_at    :datetime         not null
 #
 class Cart < ApplicationRecord
+  include General
+
   belongs_to :userable, polymorphic: true
 
   has_many :items, class_name: "Cart::Item"

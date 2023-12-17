@@ -4,15 +4,42 @@
   </div>
   <div class="col-9">
     <div class="row">
-      <%= turbo_frame_tag "tables" do %>
-        <% if @histories.present? %>
-          <%= render partial: "history", collection: @histories %>
-          <%= render "shared/pagy", pagy: @pagy %>
-        <% else %>
-          <div class="text-center">
-            <h1>Data Not Found</h1>
+      <div class="col-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="mb-2 mt-2">
+              <span class="fw-light">My Balance:</span> <%= money(current_user&.wallet&.amount) %>
+            </h5>
           </div>
-        <% end %>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="card">
+          <div class="card-body"> 
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Top-Up Amount" />
+              <button class="btn btn-outline-primary" type="button">Top Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3"></div>
+
+      <%= turbo_frame_tag "tables" do %>
+        <div class="card">
+          <div class="card-body">
+            <% if @histories.present? %>
+              <%= render partial: "history", collection: @histories %>
+              <%= render "shared/pagy", pagy: @pagy %>
+            <% else %>
+              <div class="text-center">
+                <h1>Data Not Found</h1>
+              </div>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

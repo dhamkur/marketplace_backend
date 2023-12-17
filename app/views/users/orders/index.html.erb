@@ -5,14 +5,18 @@
   <div class="col-9">
     <div class="row">
       <%= turbo_frame_tag "tables" do %>
-        <% if @orders.present? %>
-          <%= render partial: "order", collection: @orders %>
-          <%= render "shared/pagy", pagy: @pagy %>
-        <% else %>
-          <div class="text-center">
-            <h1>Data Not Found</h1>
+        <div class="card">
+          <div class="card-body">
+            <% if @orders.present? %>
+              <%= render partial: "order", collection: @orders %>
+              <%= render "shared/pagy", pagy: @pagy %>
+            <% else %>
+              <div class="text-center">
+                <h1>Data Not Found</h1>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+        </div>
       <% end %>
     </div>
   </div>

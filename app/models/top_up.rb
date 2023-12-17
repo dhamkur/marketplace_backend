@@ -12,7 +12,15 @@
 #  updated_at    :datetime         not null
 #
 class TopUp < ApplicationRecord
-  Transaction::STATUS
+  include General
   
   validates :code, uniqueness: { case_sensitive: false }
+  validates :status, inclusion: { in: Transaction::STATUS }
+
+  before_save :set_status
+
+  after_create do
+    set_code("TOPUP")
+    set_history(self.userable, self, "in")
+  end
 end

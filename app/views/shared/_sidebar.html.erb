@@ -1,0 +1,8 @@
+<div class="list-group">
+  <%= link_to "My Wallets", users_wallets_path,
+      class: "list-group-item list-group-item-action #{menu_condition("users/wallets", "active")}" %>
+  <%= link_to "My Wishlists", users_wishlists_path,
+      class: "list-group-item list-group-item-action #{menu_condition("users/wishlists", "active")}" %>
+  <%= link_to "My Orders", users_orders_path,
+      class: "list-group-item list-group-item-action #{menu_condition("users/orders", "active")}" %>
+</div>

@@ -1,7 +1,13 @@
 class Users::CartsController < UserController
   before_action :find_object, only: [:update, :destroy]
 
-  def index;end
+  def index
+    @pagy, @items = pagy(
+      current_user.cart.items,
+      link_extra: "data-turbo-frame='tables' data-turbo-stream='true'",
+      items: 10
+    )
+  end
 
   def create
     cart = current_user.cart

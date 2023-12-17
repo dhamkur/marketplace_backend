@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-3">
+    <%= render "shared/sidebar" %>
+  </div>
+  <div class="col-9">
+    <div class="row">
+      <%= turbo_frame_tag "tables" do %>
+        <% if @histories.present? %>
+          <%= render partial: "history", collection: @histories %>
+          <%= render "shared/pagy", pagy: @pagy %>
+        <% else %>
+          <div class="text-center">
+            <h1>Data Not Found</h1>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

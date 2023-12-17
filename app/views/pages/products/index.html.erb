@@ -48,10 +48,16 @@
 
     <div class="col-9">
       <%= turbo_frame_tag "tables" do %>
-        <div class="row">
-          <%= render partial: "shared/product", collection: @objects %>
-        </div>
-        <%= render "shared/pagy", pagy: @pagy %>
+        <% if @objects.present? %>
+          <div class="row">
+            <%= render partial: "shared/product", collection: @objects, locals: { column: 3 } %>
+          </div>
+          <%= render "shared/pagy", pagy: @pagy %>
+        <% else %>
+          <div class="text-center">
+            <h1>Data Not Found</h1>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

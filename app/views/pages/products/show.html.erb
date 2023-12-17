@@ -48,6 +48,16 @@
               <button type="submit" class="btn btn-primary">Add to Cart</button>
             </div>
           <% end %>
+
+          <div class="d-grid mt-2">
+            <% if is_on_wishlist(@object.id) %>
+              <%= button_to "Remove from Wishlist", users_wishlist_path(@object.id),
+                  class: "btn btn-outline-danger d-block", style: "width: 100%;", method: :delete %>
+            <% else %>
+              <%= button_to "Add to Wishlist", users_wishlists_path(product_id: @object.id),
+                  class: "btn btn-outline-danger d-block", style: "width: 100%;", method: :post %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     namespace :users do
       resources :carts, except: [:new, :edit]
+      resources :checkouts, only: [:show, :update]
+      resources :orders, only: [:index, :show, :update]
+      resources :wishlists, only: [:index, :create, :destroy]
+      resources :wallets, only: [:index, :show, :create]
     end  
   end
 end

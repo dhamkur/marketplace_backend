@@ -31,7 +31,7 @@ class User < ApplicationRecord
   has_many :withdrawals, dependent: :destroy
   has_many :wallet_histories, dependent: :destroy
 
-  after_create :set_cart
+  after_create :set_cart, :set_wallet
 
   def set_cart
     Cart.create(

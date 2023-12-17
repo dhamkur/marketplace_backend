@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-header">
+    <div class="d-flex">
+      <%= form_with url: users_cart_path(item, type: "selection"), html: { method: :put, class: "me-auto" },
+          data: { controller: "form", form_target: "source" } do |f| %>
+        <div class="form-check">
+          <input class="form-check-input"
+            name="is_selected"
+            type="checkbox"
+            id="select-item-<%= item.id %>"
+            <% if item.is_selected %>
+              checked
+            <% end %>
+            data-action="input->form#search"
+          />
+          <label class="form-check-label" for="select-item-<%= item.id %>">
+            Selected
+          </label>
+        </div>
+      <% end %>
+
+      <%= link_to "X", users_cart_path(item), class: "btn btn-danger",
+          style: "--bs-btn-padding-y: .15rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;",
+          data: { turbo_method: :delete } %>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="d-flex">
+      <div class="flex-shrink-0">
+        <%= image_tag("placeholder_600_400.svg", height: "100%", width: "400px") %>
+      </div>
+      <div class="flex-grow-1 ms-3">
+        <h5 class="card-title">
+          <%= item.product.name %>
+        </h5>
+        <p class="card-text">
+          <%= item.variant.name %><br/>
+        </p>
+
+        <%= form_with url: users_cart_path(item, type: "quantity"), html: { method: :put, class: "text-right" },
+            data: { turbo_frame: "summary", controller: "form", form_target: "source" } do |f| %>
+          <%= f.number_field :quantity, class: "form-control", value: item.quantity,
+              min: 1, data: { action: "input->form#search" } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

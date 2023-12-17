@@ -27,9 +27,17 @@
                 <%= link_to "My Carts", users_carts_path, class: "dropdown-item" %>
               </li>
               <li>
-                <%= link_to "My Orders", "javascript:void(0)", class: "dropdown-item" %>
+                <%= link_to users_wallets_path, class: "dropdown-item" do %>
+                  My Wallet <span class="badge rounded-pill text-bg-danger"><%= money(current_user&.wallet&.amount || 0) %></span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "My Wishlists", users_wishlists_path, class: "dropdown-item" %>
               </li>
               <li><hr class="dropdown-divider"></li>
+              <li>
+                <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
+              </li>
               <li>
                 <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete } %>
               </li>

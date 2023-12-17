@@ -1,9 +1,18 @@
-<div class="col-3 mb-5">
+<div class="col-<%= column %> mb-5">
   <div class="card">
     <%= image_tag("placeholder_600_400.svg", class: "card-img-top") %>
     <div class="card-body">
       <h5 class="card-title"><%= product.name.truncate(19) %> - <%= money(product.starting_price) %></h5>
-      <%= link_to "View Detail", product_path(product.slug), class: "btn btn-primary d-block", target: "_top" %>
+      <div class="d-grid">
+        <%= link_to "View Detail", product_path(product.slug), class: "btn btn-primary d-block mb-3", target: "_top" %>
+        <% if is_on_wishlist(product.id) %>
+          <%= button_to "Remove from Wishlist", users_wishlist_path(product.id),
+              class: "btn btn-outline-danger d-block", style: "width: 100%;", method: :delete %>
+        <% else %>
+          <%= button_to "Add to Wishlist", users_wishlists_path(product_id: product.id),
+              class: "btn btn-outline-danger d-block", style: "width: 100%;", method: :post %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

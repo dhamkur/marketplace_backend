@@ -21,7 +21,10 @@ class Order::Item < ApplicationRecord
 
   belongs_to :order
   belongs_to :product
-  belongs_to :variant, class_name: "Product::Variant"
+  belongs_to :variant, class_name: "Product::Variant", foreign_key: "product_variant_id"
 
-  before_save :set_status
+  validates :delivery_method, presence: true
+  validates :status, inclusion: { in: Transaction::ORDER }
+
+  before_validation :set_status
 end

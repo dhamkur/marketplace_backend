@@ -20,6 +20,8 @@ gem 'seedbank', '~> 0.5.0'
 gem 'faker', '~> 3.2', '>= 3.2.2'
 gem 'pagy', '~> 6.2'
 gem 'ransack', '3.2.1'
+gem 'xendit', '~> 1.0'
+gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

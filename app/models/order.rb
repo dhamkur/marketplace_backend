@@ -21,18 +21,25 @@
 #  total_delivery_fee :decimal(, )      default(0.0)
 #  tax_amount         :decimal(, )      default(0.0)
 #  tax_id             :bigint
+#  xendit_invoice_url :string
+#  xendit_external_id :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
 class Order < ApplicationRecord
   include General
 
-  Transaction::ORDER
-
   belongs_to :user
   belongs_to :promotion, optional: true
   belongs_to :tax, optional: true
 
-  before_save :set_status
-  before_save do set_code("INV") end
+  has_many :items, dependent: :destroy
+
+  validates :sub_total, :total_payment, presence: true
+  validates :status, inclusion: { in: Transaction::ORDER }
+
+  before_validation do
+    set_code("INV")
+    set_status
+  end
 end

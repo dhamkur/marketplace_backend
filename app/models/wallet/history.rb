@@ -15,6 +15,8 @@
 #  updated_at           :datetime         not null
 #
 class Wallet::History < ApplicationRecord
+  include General
+
   AMOUNT_TYPE = ["in", "out"]
   TYPE = ["top_up", "withdrawal", "order"]
 
@@ -25,5 +27,7 @@ class Wallet::History < ApplicationRecord
   validates :history_type, inclusion: { in: TYPE }
   validates :status, inclusion: { in: Transaction::STATUS }
 
-  scope :my_history, -> (wallet_id, type) { where(wallet_id: wallet_id, history_type: type) }
+  scope :my_history, -> (wallet_id, status) { where(wallet_id: wallet_id, status: status) }
+
+  before_validation :set_status
 end

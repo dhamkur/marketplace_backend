@@ -1,0 +1,19 @@
+<%= turbo_frame_tag "summary" do %>
+  <table class="table table-borderless">
+    <tr>
+      <td>Sub Total</td>
+      <td>:</td>
+      <td class="text-end"><%= money(@order.sub_total) %></td>
+    </tr>
+    <tr>
+      <td>Total Payment</td>
+      <td>:</td>
+      <td class="text-end"><%= money(@order.total_payment) %></td>
+    </tr>
+  </table>
+
+  <div class="d-grid">
+    <%= button_to "Proceed to Payment", users_payments_path(order_id: @order.id), class: "btn btn-primary d-block",
+        method: :post, style: "width: 100%;", data: { turbo: false } %>
+  </div>
+<% end %>

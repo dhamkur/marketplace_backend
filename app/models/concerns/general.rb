@@ -1,8 +1,8 @@
-module General::Method
+module General
   extend ActiveSupport::Concern
 
   def set_status
-    self.status = "pending" if self.status.blank?
+    self.status = "pending"
   end
 
   def set_code(type = "")

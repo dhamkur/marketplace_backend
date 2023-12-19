@@ -21,6 +21,8 @@
 #  total_delivery_fee :decimal(, )      default(0.0)
 #  tax_amount         :decimal(, )      default(0.0)
 #  tax_id             :bigint
+#  xendit_invoice_url :string
+#  xendit_external_id :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

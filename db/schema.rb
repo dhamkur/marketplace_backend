@@ -162,6 +162,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_11_103333) do
     t.decimal "total_delivery_fee", default: "0.0"
     t.decimal "tax_amount", default: "0.0"
     t.bigint "tax_id"
+    t.string "xendit_invoice_url"
+    t.string "xendit_external_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_orders_on_code"
@@ -232,6 +234,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_11_103333) do
     t.string "status"
     t.bigint "userable_id"
     t.string "userable_type"
+    t.text "proof_of_payment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_top_ups_on_code"

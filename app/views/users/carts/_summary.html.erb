@@ -11,4 +11,11 @@
       <td class="text-end"><%= money(current_user.cart.total_amount) %></td>
     </tr>
   </table>
+
+  <% if current_user.cart.items.present? %>
+    <div class="d-grid">
+      <%= button_to "Checkout Now", users_checkouts_path, class: "btn btn-primary d-block",
+          method: :post, style: "width: 100%;", data: { turbo_frame: "_top" } %>
+    </div>
+  <% end %>
 <% end %>

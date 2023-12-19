@@ -5,12 +5,13 @@
       <h5 class="card-title"><%= product.name.truncate(19) %> - <%= money(product.starting_price) %></h5>
       <div class="d-grid">
         <%= link_to "View Detail", product_path(product.slug), class: "btn btn-primary d-block mb-3", target: "_top" %>
-        <% if is_on_wishlist(product.id) %>
+        <% if user_signed_in? && is_on_wishlist(product.id) %>
           <%= button_to "Remove from Wishlist", users_wishlist_path(product.id),
               class: "btn btn-outline-danger d-block", style: "width: 100%;", method: :delete %>
         <% else %>
           <%= button_to "Add to Wishlist", users_wishlists_path(product_id: product.id),
-              class: "btn btn-outline-danger d-block", style: "width: 100%;", method: :post %>
+              class: "btn btn-outline-danger d-block", style: "width: 100%;", method: :post,
+              data: { turbo_frame: "_top" } %>
         <% end %>
       </div>
     </div>

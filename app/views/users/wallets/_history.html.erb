@@ -1,0 +1,20 @@
+<tr id="<%= dom_id(history) %>">
+  <td><%= history.code %></td>
+  <td><%= money(history.amount) %></td>
+  <td><%= history.status.humanize %></td>
+  <td><%= history.created_at %></td>
+  <td>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Action
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Detail</a></li>
+        <li><a class="dropdown-item" href="#">Upload Proof of Payment</a></li>
+        <% if history.status == "pending" %>
+          <li><a class="dropdown-item" href="#">Cancel</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </td>
+</tr>

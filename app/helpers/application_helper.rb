@@ -2,7 +2,11 @@ module ApplicationHelper
   include Pagy::Frontend
 
   def money(amount)
-    number_to_currency(amount, precision: 2, unit: "$")
+    number_to_currency(amount, precision: 2, delimiter: ".", unit: "Rp. ")
+  end
+
+  def condition(check, value)
+    check ? value : ""
   end
 
   def menu_condition(check, value_1, value_2 = "")
@@ -16,5 +20,9 @@ module ApplicationHelper
     )
 
     return wishlist.present? ? (wishlist.product_id == product_id) : nil
+  end
+
+  def date_time(date)
+    date.strftime("%d %B %Y, %H:%M:%S")
   end
 end

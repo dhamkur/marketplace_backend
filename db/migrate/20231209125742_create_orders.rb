@@ -19,6 +19,8 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.decimal :total_delivery_fee, default: 0
       t.decimal :tax_amount, default: 0
       t.references :tax, null: true, foreign_key: true
+      t.string :xendit_invoice_url
+      t.string :xendit_external_id
 
       t.timestamps
     end

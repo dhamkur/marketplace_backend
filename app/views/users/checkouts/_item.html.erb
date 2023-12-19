@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex">
+      <div class="flex-shrink-0">
+        <%= image_tag("placeholder_600_400.svg", height: "100%", width: "400px") %>
+      </div>
+      <div class="flex-grow-1 ms-3">
+        <h5 class="card-title">
+          <%= item.product.name %>
+        </h5>
+        <p class="card-text">
+          <%= item.variant.name %><br/>
+          Quantity: <%= item.quantity %><br/>
+          Price: <%= "#{item.quantity} x #{money(item.amount)}" %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,7 @@ class CreateTopUps < ActiveRecord::Migration[7.0]
       t.string :status
       t.bigint :userable_id, index: true
       t.string :userable_type
+      t.text :proof_of_payment
 
       t.timestamps
     end

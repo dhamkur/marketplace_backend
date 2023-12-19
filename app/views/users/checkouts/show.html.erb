@@ -1,0 +1,23 @@
+<section id="checkouts">
+  <div class="row">
+    <div class="col-9">
+      <% if @order.items.present? %>
+        <%= render partial: "item", collection: @order.items %>
+      <% else %>
+        <div class="text-center">
+          <h1>Data Not Found</h1>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-3">
+      <div class="card">
+        <div class="card-header">
+          <h6>Summary</h6>
+        </div>
+        <div class="card-body">
+          <%= render "summary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

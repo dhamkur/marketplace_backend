@@ -9,8 +9,14 @@
         Action
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Detail</a></li>
-        <li><a class="dropdown-item" href="#">Upload Proof of Payment</a></li>
+        <li>
+          <%= link_to "Detail", users_wallet_path(history),
+              class: "dropdown-item", data: { turbo_frame: "modal" } %>
+        </li>
+        <li>
+          <%= link_to "Upload Proof of Transfer", users_wallet_path(history, type: "proof_of_transfer"),
+              class: "dropdown-item", data: { turbo_frame: "modal" } %>
+        </li>
         <% if history.status == "pending" %>
           <li><a class="dropdown-item" href="#">Cancel</a></li>
         <% end %>

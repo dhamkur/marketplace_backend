@@ -1,0 +1,19 @@
+<% content_for :modal_content do %>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Transaction Detail</h5>
+      <button type="button" class="btn-close" data-action="modal#hideModal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <% if params[:type].blank? %>
+        <%= render "detail" %>
+      <% end %>
+
+      <% if params[:type] == "proof_of_transfer" %>
+        <%= render "proof_of_transfer" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= render "shared/modal", modal_dialog: "" %>

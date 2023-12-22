@@ -1,0 +1,38 @@
+<div class="text-center">
+  <% if @object.amount_type == "in" %>
+    <h4 class="text-success">+<%= money(@object.amount) %></h4>
+  <% else %>
+    <h4 class="text-danger">-<%= money(@object.amount) %></h4>
+  <% end %>
+
+  <h6 class="text-capitalize" style="font-weight: 700;"><%= @object.history_type.humanize %></h6>
+</div>
+<div class="border-bottom my-3"></div>
+<table class="table table-borderless" width="100%">
+  <tbody>
+    <tr>
+      <td class="text-start">Transaction ID</td>
+      <td class="text-center">:</td>
+      <td class="fw-bold"><%= @object.code %></td>
+    </tr>
+    <tr>
+      <td class="text-start">Status</td>
+      <td class="text-center">:</td>
+      <td class="fw-bold"><%= @object.status.humanize %></td>
+    </tr>
+    <tr>
+      <td class="text-start">Date & Time</td>
+      <td class="text-center">:</td>
+      <td class="fw-bold"><%= date_time(@object.created_at) %></td>
+    </tr>
+  </tbody>
+</table>
+<div class="border-bottom my-3"></div>
+<table width="100%">
+  <tbody>
+    <tr>
+      <td class="text-start text-capitalize"><%= @object.history_type.humanize %> Amount</td>
+      <td class="text-end fw-bold"><%= money(@object.amount) %></td>
+    </tr>
+  </tbody>
+</table>

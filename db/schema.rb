@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_11_103333) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_22_122635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -292,6 +292,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_11_103333) do
     t.string "history_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "proof_of_transfer_data"
     t.index ["code"], name: "index_wallet_histories_on_code"
     t.index ["transactionable_id"], name: "index_wallet_histories_on_transactionable_id"
     t.index ["wallet_id"], name: "index_wallet_histories_on_wallet_id"

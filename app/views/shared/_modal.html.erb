@@ -1,0 +1,15 @@
+<% custom_dialog = modal_dialog.present? ? modal_dialog : "modal-dialog-centered" %>
+<%= turbo_frame_tag("modal") do %>
+  <div data-controller="modal"
+    data-modal-target="modal"
+    data-action="turbo:submit-end->modal#submitEnd keyup@window->modal#closeWithKeyboard click@window->modal#closeBackground"
+  >
+    <div class="modal show" aria-modal="true" role="dialog" style="display: block;">
+      <div class="modal-dialog <%= custom_dialog %>">
+        <%= yield :modal_content %>
+      </div>
+    </div>
+
+    <div class="modal-backdrop show"></div>
+  </div>
+<% end %>

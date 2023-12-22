@@ -7,6 +7,45 @@
       <%= turbo_frame_tag "tables" do %>
         <div class="card">
           <div class="card-body">
+            <div class="d-flex mb-3">
+              <ul class="nav nav-pills me-auto">
+                <li class="nav-item">
+                  <%= link_to "All", users_orders_path, class: "nav-link #{condition(params[:status].blank?, "active")}" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Pending", users_orders_path(status: "pending"),
+                      class: "nav-link #{condition(params[:status] == "pending", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Canceled", users_orders_path(status: "canceled"),
+                      class: "nav-link #{condition(params[:status] == "canceled", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Processing", users_orders_path(status: "processing"),
+                      class: "nav-link #{condition(params[:status] == "processing", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "On Delivery", users_orders_path(status: "on_delivery"),
+                      class: "nav-link #{condition(params[:status] == "on_delivery", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Completed", users_orders_path(status: "completed"),
+                      class: "nav-link #{condition(params[:status] == "completed", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+              </ul>
+
+              <%= search_form_for @search, url: users_orders_path(status: params[:status]), data: { turbo_frame: "tables",
+                  turbo_stream: true, controller: "form", form_target: "source" } do |f| %>
+                <%= f.search_field :code_cont, class: "form-control", placeholder: "Search...",
+                    data: { action: "input->form#search" } %>
+              <% end %>
+            </div>
+
             <% if @orders.present? %>
               <table class="table">
                 <thead>
@@ -15,6 +54,7 @@
                     <th>Total Payment</th>
                     <th>Status</th>
                     <th class="text-center">Created At</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>

@@ -1,0 +1,16 @@
+<%= form_with(url: users_wallet_path(@object), html: { method: :put }, data: { turbo_frame: "_top" }) do |f| %>
+  <div class="mb-3">
+    <label for="proof_of_transfer" class="form-label">Proof of Transfer</label>
+    <%= f.file_field :proof_of_transfer, class: "form-control", id: "proof_of_transfer" %>
+  </div>
+
+  <% if @object.proof_of_transfer.present? %>
+    <div class="mb-3">
+      <%= image_tag(@object.proof_of_transfer_url, class: "rounded border border-secondary", style: "width: 100%;height: 250px;object-fit: cover;") %>
+    </div>
+  <% end %>
+
+  <div class="d-grid">
+    <%= f.submit "Upload Now", class: "btn btn-primary" %>
+  </div>
+<% end %>

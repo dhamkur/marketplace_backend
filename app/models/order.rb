@@ -38,6 +38,8 @@ class Order < ApplicationRecord
   validates :sub_total, :total_payment, presence: true
   validates :status, inclusion: { in: Transaction::ORDER }
 
+  scope :by_status, -> (data) { where(status: data) }
+
   before_validation do
     set_code("INV")
     set_status

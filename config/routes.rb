@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "pages/homes#index"
 
+  devise_for :admins, controllers: { sessions: "admins/sessions" }
   devise_for :merchants, controllers: {
     sessions: "merchants/sessions",
     registrations: "merchants/registrations"
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     sessions: "users/sessions",
-    registrations: "users/registrations",
+    registrations: "users/registrations"
   }
 
   scope module: "pages" do

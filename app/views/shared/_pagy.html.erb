@@ -7,7 +7,7 @@
 -%>
 <% link = pagy_link_proc(pagy, link_extra: 'class="page-link"') -%>
 <%#                            -%><nav class="pagy-bootstrap-nav" role="navigation">
-<%#                            -%>  <ul class="pagination">
+<%#                            -%>  <ul class="pagination pagination-sm">
 <% if pagy.prev                -%>    <li class="page-item prev"><%== link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"') %></li>
 <% else                        -%>    <li class="page-item prev disabled"><a href="#" class="page-link"><%== pagy_t('pagy.nav.prev') %></a></li>
 <% end                         -%>

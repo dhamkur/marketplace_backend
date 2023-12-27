@@ -30,25 +30,52 @@
       <div class="mb-3"></div>
 
       <%= turbo_frame_tag "tables" do %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex">
+              <ul class="nav nav-pills me-auto">
+                <li class="nav-item">
+                  <%= link_to "All", users_wallets_path, class: "nav-link #{condition(params[:type].blank?, "active")}" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Top Up", users_wallets_path(type: "top_up"),
+                      class: "nav-link #{condition(params[:type] == "top_up", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Withdrawal", users_wallets_path(type: "withdrawal"),
+                      class: "nav-link #{condition(params[:type] == "withdrawal", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Purchase", users_wallets_path(type: "purchase"),
+                      class: "nav-link #{condition(params[:type] == "purchase", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>        
+
         <div class="card">
           <div class="card-body">
             <div class="d-flex mb-3">
               <ul class="nav nav-pills me-auto">
                 <li class="nav-item">
-                  <%= link_to "All", users_wallets_path, class: "nav-link #{condition(params[:status].blank?, "active")}" %>
+                  <%= link_to "All", users_wallets_path(type: params[:type]), class: "nav-link #{condition(params[:status].blank?, "active")}" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "Pending", users_wallets_path(status: "pending"),
+                  <%= link_to "Pending", users_wallets_path(status: "pending", type: params[:type]),
                       class: "nav-link #{condition(params[:status] == "pending", "active")}",
                       data: { turbo_frame: "tables" } %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "Canceled", users_wallets_path(status: "canceled"),
+                  <%= link_to "Canceled", users_wallets_path(status: "canceled", type: params[:type]),
                       class: "nav-link #{condition(params[:status] == "canceled", "active")}",
                       data: { turbo_frame: "tables" } %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "Completed", users_wallets_path(status: "completed"),
+                  <%= link_to "Completed", users_wallets_path(status: "completed", type: params[:type]),
                       class: "nav-link #{condition(params[:status] == "completed", "active")}",
                       data: { turbo_frame: "tables" } %>
                 </li>

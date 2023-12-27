@@ -1,0 +1,98 @@
+<% content_for :modal_content do %>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Order Detail</h5>
+      <button type="button" class="btn-close" data-action="modal#hideModal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <table>
+        <tr>
+          <td><%= @order.code %></td>
+        </tr>
+        <tr>
+          <td><%= @order.status.try(:humanize) %></td>
+        </tr>
+        <tr>
+          <td><%= @order.payment_method.try(:humanize) %></td>
+        </tr>
+        <% if @order.address.present? %>
+          <tr>
+            <td>
+              <%= @order.address %><br/>
+              <%= "#{@order.city}, #{@order.state}, #{@order.zip_code}" %><br/>
+              <%= @order.country %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div class="border-bottom mt-3 mb-3"></div>
+
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Total</th>
+          </td>
+        </thead>
+        <tbody>
+          <% @order.items.each do |item| %>
+            <tr>
+              <td><%= item.product.name %> - <%= item.quantity %> x <%= money(item.amount) %></td>
+              <td><%= money(item.total_amount) %></td>
+            </td>
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="border-bottom mt-3 mb-3"></div>
+
+      <table class="table table-borderless">
+        <% unless @order.used_wallet == 0.0 %>
+          <tr>
+            <td>Used Wallet</td>
+            <td></td>
+            <td class="text-end"><%= money(@order.used_wallet) %></td>
+          </tr>
+        <% end %>
+        <% unless @order.discount == 0.0 %>
+          <tr>
+            <td>Discount</td>
+            <td></td>
+            <td class="text-end">
+              <strong><%= @order.applied_promo %></strong> <%= money(@order.discount) %>
+            </td>
+          </tr>
+        <% end %>
+        <% unless @order.tax_amount == 0.0 %>
+          <tr>
+            <td>Tax Amount</td>
+            <td></td>
+            <td class="text-end">
+              <strong><%= @order.tax.name %></strong> <%= money(@order.tax_amount) %>
+            </td>
+          </tr>
+        <% end %>
+        <% unless @order.total_delivery_fee == 0.0 %>
+        <tr>
+          <td>Total Delivery</td>
+          <td></td>
+          <td class="text-end"><%= money(@order.total_delivery_fee) %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td>Sub Total</td>
+          <td></td>
+          <td class="text-end"><%= money(@order.sub_total) %></td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Total Payment</td>
+          <td></td>
+          <td class="text-end fw-bold"><%= money(@order.total_payment) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<%= render "shared/modal", modal_dialog: "modal-dialog-centered" %>

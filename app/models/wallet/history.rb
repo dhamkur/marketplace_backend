@@ -29,7 +29,9 @@ class Wallet::History < ApplicationRecord
   validates :history_type, inclusion: { in: TYPE }
   validates :status, inclusion: { in: Transaction::STATUS }
 
-  scope :my_history, -> (wallet_id, status) { where(wallet_id: wallet_id, status: status) }
+  scope :my_history, -> (wallet_id, status, type) { where(
+    wallet_id: wallet_id, status: status, history_type: type
+  ) }
 
   before_validation :set_status
 end

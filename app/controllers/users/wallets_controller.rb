@@ -2,10 +2,11 @@ class Users::WalletsController < UserController
   before_action :find_object, only: [:show, :update]
 
   def index
+    my_type = params[:type].present? ? params[:type] : Wallet::History::TYPE
     status  = params[:status].present? ? params[:status] : Transaction::STATUS
     @search = Wallet::History.my_history(
-      current_user.wallet.id, status
-    ).ransack(params[:q]) # add history_type in here
+      current_user.wallet.id, status, my_type
+    ).ransack(params[:q])
 
     @pagy, @histories = pagy(
       @search.result,

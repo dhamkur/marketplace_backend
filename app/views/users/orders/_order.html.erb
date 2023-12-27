@@ -3,5 +3,19 @@
   <td><%= money(order.total_payment) %></td>
   <td><%= order.status.humanize %></td>
   <td class="text-center"><%= date_time(order.created_at) %></td>
-  <td>Action here</td>
+  <td>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+      >
+        Action
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <%= link_to "Detail", users_order_path(order),
+              class: "dropdown-item", data: { turbo_frame: "modal" } %>
+        </li>
+      </ul>
+    </div>
+  </td>
 </td>

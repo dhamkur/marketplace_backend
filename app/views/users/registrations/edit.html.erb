@@ -45,13 +45,15 @@
           </div>
         <% end %>
 
+        <div class="border-bottom mb-3"></div>
+
         <h3>Cancel my account</h3>
 
         <div>
           Unhappy? 
           <%= button_to "Cancel my account", registration_path(resource_name),
               data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
-              method: :delete, class: "btn btn-danger" %>
+              method: :delete, class: "btn btn-danger btn-sm" %>
         </div>
 
         <%= link_to "Back", :back %>

@@ -1,9 +1,5 @@
-class AdminController < ActionController::Base
-  include Pagy::Backend
-  include Responder
+class AdminController < ApplicationController
   include Crudable
-
-  layout "application"
 
   before_action :authenticate_admin!
 end

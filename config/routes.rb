@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     namespace :admins do
       resources :banks
       resources :categories
+      resources :promotions
+      resources :taxes
     end
   end
 

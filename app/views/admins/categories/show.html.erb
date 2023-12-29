@@ -1,0 +1,34 @@
+<% content_for :modal_content do %>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Detail Category</h5>
+      <button type="button" class="btn-close" data-action="modal#hideModal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <table class="table table-borderless">
+        <tr>
+          <th>ID</th>
+          <td>:</td>
+          <td><%= @object.id %></td>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <td>:</td>
+          <td><%= @object.name %></td>
+        </tr>
+        <tr>
+          <th>Created At</th>
+          <td>:</td>
+          <td><%= date_time(@object.created_at) %></td>
+        </tr>
+        <tr>
+          <th>Updated At</th>
+          <td>:</td>
+          <td><%= date_time(@object.updated_at) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<%= render "shared/modal", modal_dialog: "modal-dialog-centered" %>

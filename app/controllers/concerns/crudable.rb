@@ -4,7 +4,7 @@ module Crudable
   included do
     before_action :find_query, only: :index
     before_action :find_class, only: [:new, :create]
-    before_action :find_config, only: [:create, :update]
+    before_action :find_config, only: [:create, :update, :destroy]
     before_action :find_object, only: [:show, :edit, :update, :destroy]
   end
 
@@ -51,6 +51,9 @@ module Crudable
 
   def destroy
     @object.destroy
-    delete_stream(@object)
+    redirect_back(
+      fallback_location: @config[:redirect_location],
+      notice: "Data has been deleted"
+    )
   end
 end

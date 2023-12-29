@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   devise_scope :admin do
     namespace :admins do
+      resources :banks
       resources :categories
     end
   end

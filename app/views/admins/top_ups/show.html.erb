@@ -39,7 +39,11 @@
         <tr>
           <th>Proof of Payment</th>
           <td>:</td>
-          <td><%= image_tag(@object.image_url, style: "width: 100%;height: auto;") %></td>
+          <td>
+            <% if @object.try(:image_url).present? %>
+              <%= image_tag(@object.try(:image_url), style: "width: 100%;height: auto;") %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th>Created At</th>

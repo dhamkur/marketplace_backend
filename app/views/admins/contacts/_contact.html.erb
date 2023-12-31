@@ -1,0 +1,29 @@
+<tr id="<%= dom_id(contact) %>">
+  <td><%= contact.name %></td>
+  <td><%= contact.email %></td>
+  <td><%= date_time(contact.created_at) %></td>
+  <td>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+      >
+        Action
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <%= link_to "Detail", admins_contact_path(contact),
+              class: "dropdown-item", data: { turbo_frame: "modal" } %>
+        </li>
+        <li>
+          <%= link_to "Edit", edit_admins_contact_path(contact),
+              class: "dropdown-item", data: { turbo_frame: "modal" } %>
+        </li>
+        <li>
+          <%= link_to "Delete", admins_contact_path(contact),
+              class: "dropdown-item", data: { turbo_method: :delete,
+              turbo_confirm: "Are you sure?" } %>
+        </li>
+      </ul>
+    </div>
+  </td>
+</tr>

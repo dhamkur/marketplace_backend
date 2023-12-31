@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   }
 
   scope module: "pages" do
+    resources :contacts, only: [:index, :create]
     resources :products, only: [:index, :show]
   end
 

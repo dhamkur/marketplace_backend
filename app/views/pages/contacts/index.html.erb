@@ -1,0 +1,43 @@
+<section id="contacts">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-left">Contact Us</h2>
+
+          <%= form_for(@object, url: contacts_path, data: { turbo: false }) do |f| %>
+            <div class="row">
+              <div class="col-4">
+                <div class="mb-3">
+                  <%= f.label :name %><br />
+                  <%= f.text_field :name, class: "form-control", required: true %>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <%= f.label :email %><br />
+                  <%= f.email_field :email, class: "form-control", required: true %>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="mb-3">
+                  <%= f.label :phone_number %><br />
+                  <%= f.telephone_field :phone_number, class: "form-control", required: true %>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :message %><br />
+              <%= f.text_area :message, class: "form-control", rows: 5, required: true %>
+            </div>
+
+            <div class="mb-3 d-grid">
+              <%= f.submit "Send Message", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

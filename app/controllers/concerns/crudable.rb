@@ -35,7 +35,6 @@ module Crudable
   end
 
   def show;end
-
   def edit;end
 
   def update

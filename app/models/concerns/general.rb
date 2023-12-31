@@ -2,14 +2,16 @@ module General
   extend ActiveSupport::Concern
 
   def set_status
-    self.status = "pending"
+    self.status = "pending" if self.status.blank?
   end
 
   def set_code(type = "")
-    current_time = Time.now.strftime("%d%m%Y%H%M%S")
-    transaction  = "#{type}/#{current_time}"
+    if self.code.blank?
+      current_time = Time.now.strftime("%d%m%Y%H%M%S")
+      transaction  = "#{type}/#{current_time}"
 
-    self.code = transaction
+      self.code = transaction
+    end
   end
 
   def set_history(user, transaction, amount_type)

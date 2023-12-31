@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :contacts
       resources :promotions
       resources :taxes
+      resources :top_ups, only: [:index, :show, :update]
     end
   end
 

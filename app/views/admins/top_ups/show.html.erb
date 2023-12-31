@@ -1,0 +1,59 @@
+<% content_for :modal_content do %>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Detail Top Up</h5>
+      <button type="button" class="btn-close" data-action="modal#hideModal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <table class="table table-borderless">
+        <tr>
+          <th>ID</th>
+          <td>:</td>
+          <td><%= @object.id %></td>
+        </tr>
+        <tr>
+          <th>Code</th>
+          <td>:</td>
+          <td><%= @object.code %></td>
+        </tr>
+        <tr>
+          <th>User Name</th>
+          <td>:</td>
+          <td><%= @object.userable&.name || @object.userable&.email %></td>
+        </tr>
+        <tr>
+          <th>User Type</th>
+          <td>:</td>
+          <td><%= @object.userable_type %></td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td>:</td>
+          <td><%= @object.status.humanize %></td>
+        </tr>
+        <tr>
+          <th>Amount</th>
+          <td>:</td>
+          <td><%= money(@object.amount) %></td>
+        </tr>
+        <tr>
+          <th>Proof of Payment</th>
+          <td>:</td>
+          <td><%= image_tag(@object.image_url, style: "width: 100%;height: auto;") %></td>
+        </tr>
+        <tr>
+          <th>Created At</th>
+          <td>:</td>
+          <td><%= date_time(@object.created_at) %></td>
+        </tr>
+        <tr>
+          <th>Updated At</th>
+          <td>:</td>
+          <td><%= date_time(@object.updated_at) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>
+
+<%= render "shared/modal", modal_dialog: "modal-dialog-centered" %>

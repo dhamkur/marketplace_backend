@@ -16,7 +16,9 @@ class TopUp < ApplicationRecord
   include General
 
   belongs_to :userable, polymorphic: true
-  
+
+  has_one :wallet_history, class_name: "Wallet::History", foreign_key: "transactionable_id"
+
   validates :code, uniqueness: { case_sensitive: false }
   validates :status, inclusion: { in: Transaction::STATUS }
 
@@ -27,5 +29,13 @@ class TopUp < ApplicationRecord
 
   after_create do
     set_history(self.userable, self, "in")
+  end
+
+  def completed
+    wallet = self.userable.wallet
+
+    self.update(status: "completed")
+    self.wallet_history.update(status: "completed")
+    wallet.update(amount: wallet.amount + self.amount)
   end
 end

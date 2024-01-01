@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   scope module: "pages" do
     resources :contacts, only: [:index, :create]
     resources :products, only: [:index, :show]
+    resources :subscribers, only: :create
   end
 
   devise_scope :admin do
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
       resources :categories
       resources :contacts
       resources :promotions
+      resources :subscribers
       resources :taxes
       resources :top_ups, only: [:index, :show, :update]
     end

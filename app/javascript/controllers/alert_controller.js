@@ -9,6 +9,7 @@ export default class extends Controller {
     alerts.forEach((alert) => {
       setTimeout(() => {
         alert.classList.remove("show");
+        alert.remove();
       }, 3000);
     });
   }

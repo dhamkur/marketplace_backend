@@ -14,15 +14,15 @@
       </div>
 
       <div class="col-4 mb-3">
-        <form>
+        <%= form_for(Subscriber.new, url: subscribers_path, method: :post, data: { turbo: false }) do |f| %>
           <h5>Subscribe to our newsletter</h5>
           <p>Monthly digest of what's new and exciting from us.</p>
           <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-            <label for="newsletter1" class="visually-hidden">Email address</label>
-            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-            <button class="btn btn-primary" type="button">Subscribe</button>
+            <label class="visually-hidden">Email address</label>
+            <%= f.email_field :email, class: "form-control", placeholder: "Email address" %>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
           </div>
-        </form>
+        <% end %>
       </div>
     </div>
 

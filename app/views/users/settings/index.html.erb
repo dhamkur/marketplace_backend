@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-3">
+    <%= render "shared/user/sidebar" %>
+  </div>
+  <div class="col-9">
+    <div class="row">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="d-flex">
+            <div class="me-auto">
+              <h4>Bank Account</h4>
+            </div>
+            <div class="ignored-class">
+              <%= link_to "Edit Bank Account", edit_users_setting_path(current_user.user_bank, type: "bank"),
+                  class: "btn btn-primary btn-sm", data: { turbo_frame: "modal" } %>
+            </div>
+          </div>
+          <% if current_user.user_bank.present? %>
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <th>Bank</th>
+                  <td>:</td>
+                  <td><%= current_user.user_bank.bank.name %></td>
+                </tr>
+                <tr>
+                  <th>Account Holder</th>
+                  <td>:</td>
+                  <td><%= current_user.user_bank.account_holder %></td>
+                </tr>
+                <tr>
+                  <th>Account Number</th>
+                  <td>:</td>
+                  <td><%= current_user.user_bank.account_number %></td>
+                </tr>
+              </tbody>
+            </table>
+          <% else %>
+            <div class="d-flex justify-content-center align-items-center my-5">
+              <%= link_to "Add Bank Account", new_users_setting_path(type: "bank"),
+                  class: "btn btn-primary", data: { turbo_frame: "modal" } %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%# <div class="card">
+        <div class="card-body">
+          
+        </div>
+      </div> %>
+    </div>
+  </div>
+</div>

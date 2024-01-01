@@ -1,7 +1,5 @@
 class Users::CheckoutsController < UserController
-  def show
-    @order = Order.find_by(id: params[:id])
-  end
+  before_action :find_order, only: [:show, :update]
 
   def create
     if current_user.cart.items.selected.present?
@@ -36,5 +34,38 @@ class Users::CheckoutsController < UserController
 
       redirect_back(fallback_location: users_carts_path, alert: message)
     end
+  end
+
+  def show;end
+
+  def update
+    promotion = Promotion.find_by(code: params[:applied_promo])
+
+    if promotion.present?
+      discount = promotion.discount(@order.total_payment)
+
+      @order.update(
+        promotion_id: promotion.id,
+        applied_promo: params[:applied_promo],
+        discount: discount,
+        total_payment: @order.total_amount - discount
+      )
+
+      redirect_back(
+        fallback_location: users_checkout_path(@order),
+        notice: "Promo code has been applied"
+      )
+    else
+      redirect_back(
+        fallback_location: users_checkout_path(@order),
+        alert: "Promo code not found"
+      )
+    end
+  end
+
+  private
+
+  def find_order
+    @order = Order.find_by(id: params[:id])
   end
 end

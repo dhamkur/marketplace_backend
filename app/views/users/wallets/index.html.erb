@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-3">
-    <%= render "shared/sidebar" %>
+    <%= render "shared/user/sidebar" %>
   </div>
   <div class="col-9">
     <div class="row">
@@ -48,8 +48,8 @@
                       data: { turbo_frame: "tables" } %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "Purchase", users_wallets_path(type: "purchase"),
-                      class: "nav-link #{condition(params[:type] == "purchase", "active")}",
+                  <%= link_to "Purchase", users_wallets_path(type: "order"),
+                      class: "nav-link #{condition(params[:type] == "order", "active")}",
                       data: { turbo_frame: "tables" } %>
                 </li>
               </ul>

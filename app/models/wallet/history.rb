@@ -20,7 +20,7 @@ class Wallet::History < ApplicationRecord
   include ImageUploader::Attachment(:proof_of_transfer)
 
   AMOUNT_TYPE = ["in", "out"]
-  TYPE = ["top_up", "withdrawal", "purchase"]
+  TYPE = ["top_up", "withdrawal", "order", "campaign_order"]
 
   belongs_to :wallet
   belongs_to :transactionable, polymorphic: true, optional: true
@@ -31,7 +31,7 @@ class Wallet::History < ApplicationRecord
 
   scope :my_history, -> (wallet_id, status, type) { where(
     wallet_id: wallet_id, status: status, history_type: type
-  ) }
+  ).order(created_at: :desc) }
 
   before_validation :set_status
 end

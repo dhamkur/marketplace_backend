@@ -1,0 +1,15 @@
+<% content_for :modal_content do %>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Edit Bank</h5>
+      <button type="button" class="btn-close" data-action="modal#hideModal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <%= form_for(@object, url: { action: :update }) do |f| %>
+        <%= render "form", f: f %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= render "shared/modal", modal_dialog: "modal-dialog-centered" %>

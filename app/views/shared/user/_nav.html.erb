@@ -1,0 +1,28 @@
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= current_user.name || current_user.email %>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <%= link_to "My Carts", users_carts_path, class: "dropdown-item" %>
+    </li>
+    <li>
+      <%= link_to users_wallets_path, class: "dropdown-item" do %>
+        My Wallet <span class="badge rounded-pill text-bg-danger"><%= money(current_user&.wallet&.amount) %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "My Wishlists", users_wishlists_path, class: "dropdown-item" %>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li>
+      <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
+    </li>
+    <li>
+      <%= link_to "Setting", users_settings_path, class: "dropdown-item" %>
+    </li>
+    <li>
+      <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete } %>
+    </li>
+  </ul>
+</li>

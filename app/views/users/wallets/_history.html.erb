@@ -15,12 +15,16 @@
           <%= link_to "Detail", users_wallet_path(history),
               class: "dropdown-item", data: { turbo_frame: "modal" } %>
         </li>
-        <li>
-          <%= link_to "Upload Proof of Transfer", users_wallet_path(history, type: "proof_of_transfer"),
-              class: "dropdown-item", data: { turbo_frame: "modal" } %>
-        </li>
-        <% if history.status == "pending" %>
-          <li><a class="dropdown-item" href="#">Cancel</a></li>
+
+        <% if history.history_type == "top_up" %>
+          <li>
+            <%= link_to "Upload Proof of Transfer", users_wallet_path(history, type: "proof_of_transfer"),
+                class: "dropdown-item", data: { turbo_frame: "modal" } %>
+          </li>
+
+          <% if history.status == "pending" %>
+            <li><a class="dropdown-item" href="#">Cancel</a></li>
+          <% end %>
         <% end %>
       </ul>
     </div>

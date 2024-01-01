@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-3">
+    <%= render "shared/admin/sidebar" %>
+  </div>
+  <div class="col-9">
+    <div class="d-flex">
+      <%= search_form_for @search, url: admins_banks_path, html: { class: "me-auto" }, data: { turbo_frame: "tables",
+          turbo_stream: true, controller: "form", form_target: "source" } do |f| %>
+        <div class="mb-3">
+          <%= f.search_field :name_cont, class: "form-control", placeholder: "Search...",
+              data: { action: "input->form#search" } %>
+        </div>
+      <% end %>
+      <div class="mb-3">
+        <%= link_to "Add Bank", new_admins_bank_path,
+            class: "btn btn-primary", data: { turbo_frame: "modal" } %>
+      </div>
+    </div>
+    <%= render "lists" %>
+  </div>
+</div>

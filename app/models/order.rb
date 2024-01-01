@@ -34,14 +34,22 @@ class Order < ApplicationRecord
   belongs_to :tax, optional: true
 
   has_many :items, dependent: :destroy
+  has_one :wallet_history, class_name: "Wallet::History", foreign_key: "transactionable_id"
 
   validates :sub_total, :total_payment, presence: true
   validates :status, inclusion: { in: Transaction::ORDER }
 
-  scope :by_status, -> (data) { where(status: data) }
+  scope :by_status, -> (data) { where(status: data).order(created_at: :desc) }
 
   before_validation do
     set_code("INV")
     set_status
+  end
+
+  after_update do
+    is_wallet = (self.payment_method == "e-wallet")
+    is_paid = (self.status == "payment_verified")
+
+    set_history(self.user, self, "out", self.total_payment, "completed") if is_wallet && is_paid
   end
 end

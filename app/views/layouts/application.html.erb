@@ -12,14 +12,16 @@
   </head>
 
   <body>
-    <%= render "shared/header" %>
+    <div data-controller="service-worker">
+      <%= render "shared/header" %>
 
-    <div class="container mt-5 mb-5">
-      <%= render "shared/alert" %>
-      <%= yield %>
+      <div class="container mt-5 mb-5">
+        <%= render "shared/alert" %>
+        <%= yield %>
+      </div>
+
+      <%= render "shared/footer" %>
+      <%= turbo_frame_tag "modal" %>
     </div>
-
-    <%= render "shared/footer" %>
-    <%= turbo_frame_tag "modal" %>
   </body>
 </html>

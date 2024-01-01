@@ -13,10 +13,10 @@ class Users::OrdersController < UserController
 
   def show;end
 
-  def update;end
+  def update;end # in here we will later implement to cancel function and received order
 
   private
-  
+
   def find_order
     @order = current_user.orders.find(params[:id])
   end

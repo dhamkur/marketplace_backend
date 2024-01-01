@@ -31,7 +31,7 @@ export default class extends Controller {
   // hide modal when clicking outside of modal
   // action: "click@window->modal#closeBackground"
   closeBackground(e) {
-    if (!$(e.target).hasClass("show")) {
+    if (!e.target.classList.contains("show")) {
       return;
     }
 

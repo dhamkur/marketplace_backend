@@ -22,6 +22,7 @@ class User < ApplicationRecord
 
   include ImageUploader::Attachment(:avatar)
 
+  has_one :user_bank, class_name: "User::Bank", dependent: :destroy
   has_one :cart, dependent: :destroy, foreign_key: "userable_id"
   has_one :wallet, dependent: :destroy, foreign_key: "userable_id"
 
@@ -30,8 +31,9 @@ class User < ApplicationRecord
   has_many :wishlists, dependent: :destroy
   has_many :withdrawals, dependent: :destroy
   has_many :wallet_histories, dependent: :destroy
+  has_many :addresses, class_name: "User::Address", dependent: :destroy
 
-  after_create :set_cart, :set_wallet
+  after_create :set_bank, :set_cart, :set_wallet
 
   def set_cart
     Cart.create(
@@ -45,5 +47,9 @@ class User < ApplicationRecord
       userable_id: self.id,
       userable_type: self.class.name
     ) if self.wallet.blank?
+  end
+
+  def set_bank
+    User::Bank.create(user_id: self.id) if self.bank.blank?
   end
 end

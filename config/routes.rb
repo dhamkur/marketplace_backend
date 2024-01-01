@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       resources :checkouts, only: [:create, :show, :update]
       resources :orders, only: [:index, :show, :update]
       resources :payments, only: :create
+      resources :settings
       resources :wishlists, only: [:index, :create, :destroy]
       resources :wallets, only: [:index, :show, :create, :update]
     end  

@@ -6,14 +6,14 @@
     </div>
     <div class="modal-body">
       <table>
-        <tr>
-          <td><%= @order.code %></td>
+        <tr>          
+          <th><%= @order.code %></th>
         </tr>
         <tr>
-          <td><%= @order.status.try(:humanize) %></td>
+          <td><strong>Status</strong>: <%= @order.status.try(:humanize) %></td>
         </tr>
         <tr>
-          <td><%= @order.payment_method.try(:humanize) %></td>
+          <td><strong>Payment Method</strong>: <%= @order.payment_method.try(:humanize) %></td>
         </tr>
         <% if @order.address.present? %>
           <tr>
@@ -38,7 +38,10 @@
         <tbody>
           <% @order.items.each do |item| %>
             <tr>
-              <td><%= item.product.name %> - <%= item.quantity %> x <%= money(item.amount) %></td>
+              <td>
+                <strong>Store</strong>: <%= item.product.merchant.merchant_name %><br/>
+                <%= item.product.name %> - <%= item.quantity %> x <%= money(item.amount) %>
+              </td>
               <td><%= money(item.total_amount) %></td>
             </td>
           <% end %>

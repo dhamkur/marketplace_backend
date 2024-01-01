@@ -14,16 +14,17 @@ module General
     end
   end
 
-  def set_history(user, transaction, amount_type)
+  def set_history(user, transaction, amount_type, amount, status="")
     if user.present? && transaction.present?
       Wallet::History.create(
         wallet_id: user.wallet.id,
         transactionable_id: transaction.id,
         transactionable_type: transaction.class.name,
         history_type: transaction.class.name.underscore,
-        amount: transaction.amount,
+        amount: amount,
         amount_type: amount_type,
-        code: transaction.code
+        code: transaction.code,
+        status: status
       )
     end
   end

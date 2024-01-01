@@ -12,4 +12,12 @@
 #
 class Promotion < ApplicationRecord
   TYPE = ["percentage", "normal_amount"]
+
+  def discount(data)
+    if promotion_type == "percentage"
+      return (data.to_f * amount.to_f) / 100.to_f
+    else
+      return amount.to_f
+    end
+  end
 end

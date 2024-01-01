@@ -28,7 +28,7 @@ class TopUp < ApplicationRecord
   end
 
   after_create do
-    set_history(self.userable, self, "in")
+    set_history(self.userable, self, "in", self.amount)
   end
 
   def completed

@@ -48,8 +48,8 @@
                       data: { turbo_frame: "tables" } %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "Purchase", users_wallets_path(type: "purchase"),
-                      class: "nav-link #{condition(params[:type] == "purchase", "active")}",
+                  <%= link_to "Purchase", users_wallets_path(type: "order"),
+                      class: "nav-link #{condition(params[:type] == "order", "active")}",
                       data: { turbo_frame: "tables" } %>
                 </li>
               </ul>

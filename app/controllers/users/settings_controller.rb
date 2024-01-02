@@ -1,5 +1,5 @@
 class Users::SettingsController < UserController
-  before_action :find_object, only: [:edit, :update]
+  before_action :find_object, only: [:edit, :update, :destroy]
 
   def index;end
 
@@ -54,6 +54,15 @@ class Users::SettingsController < UserController
         messages = @object.errors.full_messages
         redirect_back(fallback_location: users_settings_path, alert: messages)
       end
+    end
+  end
+
+  def destroy
+    if params[:type] == "address"
+      messages = "Your address has been deleted"
+
+      @object.destroy
+      redirect_back(fallback_location: users_settings_path, notice: messages)
     end
   end
 

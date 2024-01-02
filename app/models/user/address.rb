@@ -16,4 +16,24 @@
 #
 class User::Address < ApplicationRecord
   belongs_to :user
+
+  before_save :validate_multiple_default_address
+  before_create :validate_max_limit_address
+
+  validates :address_name, :receiver_name, :address, :city, :contact_number,
+            :country, :state, :zip_code, presence: true
+
+  def validate_multiple_default_address
+    if self.is_default
+      User::Address.where(user_id: self.user_id).update_all(is_default: false)
+    end
+  end
+
+  def validate_max_limit_address
+    addresses = User::Address.where(user_id: self.user_id)
+
+    if addresses.size == 3
+      errors.add(:base, "You can only add maximum 3 addresses.")
+    end
+  end
 end

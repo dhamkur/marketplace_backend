@@ -1,1 +1,2 @@
-<%= render "bank", url: users_setting_path(current_user.user_bank, type: "bank") if params[:type] == "bank" %>
+<%= render "bank", url: users_setting_path(@object, type: "bank") if params[:type] == "bank" %>
+<%= render "address", url: users_setting_path(@object, type: "address") if params[:type] == "address" %>

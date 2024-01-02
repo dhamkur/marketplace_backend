@@ -87,6 +87,10 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.2.2)
     content_disposition (1.0.0)
+    countries (5.7.1)
+      unaccent (~> 0.3)
+    country_select (8.0.3)
+      countries (~> 5.0)
     crass (1.0.6)
     date (3.3.3)
     debug (1.8.0)
@@ -249,6 +253,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unaccent (0.4.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -277,6 +282,7 @@ DEPENDENCIES
   annotate (~> 3.2)
   bootsnap
   capybara
+  country_select (~> 8.0)
   debug
   devise (~> 4.9, >= 4.9.2)
   dotenv-rails (~> 2.8, >= 2.8.1)

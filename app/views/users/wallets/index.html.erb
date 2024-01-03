@@ -55,7 +55,7 @@
               </ul>
             </div>
           </div>
-        </div>        
+        </div>
 
         <div class="card">
           <div class="card-body">
@@ -80,6 +80,10 @@
                       data: { turbo_frame: "tables" } %>
                 </li>
               </ul>
+
+              <%= link_to "Withdraw Balance", new_users_wallet_path,
+                  class: "mt-2 text-decoration-none text-primary",
+                  style: "margin-right: 10px;", data: { turbo_frame: "modal" } if params[:type] == "withdrawal" %>
 
               <%= search_form_for @search, url: users_wallets_path(status: params[:status]), data: { turbo_frame: "tables",
                   turbo_stream: true, controller: "form", form_target: "source" } do |f| %>

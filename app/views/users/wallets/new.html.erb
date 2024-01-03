@@ -1,0 +1,34 @@
+<% content_for :modal_content do %>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Withdrawal</h5>
+      <button type="button" class="btn-close" data-action="modal#hideModal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <%= form_with(url: withdrawal_users_wallets_path) do |f| %>
+        <div class="mb-3">
+          <label class="form-label">Bank</label>
+          <%= f.select(:bank_name, options_for_select(Bank.all.order(name: :asc).map {|bank| [bank.name, bank.name]}, current_user.user_bank&.bank&.name),
+              { include_blank: "Select Bank", value: current_user.user_bank&.bank&.name }, { class: "form-control" }) %>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Account Holder</label>
+          <%= f.text_field :account_holder, class: "form-control", value: current_user.user_bank&.account_holder %>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Account Number</label>
+          <%= f.text_field :account_number, class: "form-control", value: current_user.user_bank&.account_number %>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Amount</label>
+          <%= f.text_field :amount, class: "form-control", placeholder: "10000" %>
+        </div>
+        <div class="d-grid">
+          <%= f.submit "Send Withdrawal", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= render "shared/modal", modal_dialog: "" %>

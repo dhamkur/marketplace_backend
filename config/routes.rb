@@ -41,7 +41,9 @@ Rails.application.routes.draw do
       resources :payments, only: :create
       resources :settings
       resources :wishlists, only: [:index, :create, :destroy]
-      resources :wallets, only: [:index, :show, :create, :update]
-    end  
+      resources :wallets, except: :edit do
+        post "withdrawal", to: "wallets#withdrawal", on: :collection
+      end
+    end
   end
 end

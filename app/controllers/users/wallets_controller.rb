@@ -15,6 +15,8 @@ class Users::WalletsController < UserController
     )
   end
 
+  def new;end
+
   def create
     top_up = TopUp.new(
       amount: params[:amount],
@@ -28,6 +30,27 @@ class Users::WalletsController < UserController
       redirect_back(fallback_location: users_wallets_path, notice: message)
     else
       message = top_up.errors.full_messages.join(", ")
+
+      redirect_back(fallback_location: users_wallets_path, alert: message)
+    end
+  end
+
+  def withdrawal
+    withdrawal = Withdrawal.new(
+      amount: params[:amount],
+      userable_id: current_user.id,
+      userable_type: current_user.class.name,
+      bank_name: params[:bank_name],
+      account_holder: params[:account_holder],
+      account_number: params[:account_number]
+    )
+
+    if withdrawal.save
+      message = "Your withdrawal request has been sent"
+
+      redirect_back(fallback_location: users_wallets_path, notice: message)
+    else
+      message = withdrawal.errors.full_messages.join(", ")
 
       redirect_back(fallback_location: users_wallets_path, alert: message)
     end

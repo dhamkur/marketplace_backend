@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       resources :subscribers
       resources :taxes
       resources :top_ups, only: [:index, :show, :update]
+      resources :withdrawals, only: [:index, :show, :update]
     end
   end
 

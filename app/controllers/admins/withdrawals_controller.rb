@@ -1,9 +1,9 @@
-class Admins::TopUpsController < AdminController
+class Admins::WithdrawalsController < AdminController
   skip_before_action :find_query
   skip_before_action :find_config
 
   def index
-    @search = TopUp.all.order(created_at: :desc).ransack(params[:q])
+    @search = Withdrawal.all.order(created_at: :desc).ransack(params[:q])
     @pagy, @objects = pagy(
       @search.result,
       link_extra: "data-turbo-frame='tables' data-turbo-stream='true'",
@@ -16,13 +16,13 @@ class Admins::TopUpsController < AdminController
       simple_stream("replace", @object, @object)
     else
       messages = @object.errors.full_messages
-      redirect_back(fallback_location: admins_top_ups_path, alert: messages)
+      redirect_back(fallback_location: admins_withdrawals_path, alert: messages)
     end
   end
 
   private
 
   def find_object
-    @object = TopUp.find_by(id: params[:id])
+    @object = Withdrawal.find_by(id: params[:id])
   end
 end

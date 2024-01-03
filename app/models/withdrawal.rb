@@ -25,7 +25,7 @@ class Withdrawal < ApplicationRecord
   validates :status, inclusion: { in: Transaction::STATUS }
 
   before_validation do
-    set_code("TOPUP")
+    set_code("WITHDRAWAL")
     set_status
   end
 

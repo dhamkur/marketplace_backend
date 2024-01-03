@@ -5,7 +5,7 @@
       <button type="button" class="btn-close" data-action="modal#hideModal" aria-label="Close"></button>
     </div>
     <div class="modal-body">
-      <%= form_with(url: withdrawal_users_wallets_path) do |f| %>
+      <%= form_with(url: withdrawal_users_wallets_path, data: { turbo: false }) do |f| %>
         <div class="mb-3">
           <label class="form-label">Bank</label>
           <%= f.select(:bank_name, options_for_select(Bank.all.order(name: :asc).map {|bank| [bank.name, bank.name]}, current_user.user_bank&.bank&.name),

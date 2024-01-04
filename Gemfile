@@ -32,6 +32,31 @@ end
 
 group :development do
   gem "web-console"
+
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  gem 'spring'
+  gem 'spring-watcher-listen'
+
+  # Deployment
+  gem 'capistrano',                   '~> 3.11',  require: false
+  gem 'capistrano-rbenv',             '~> 2.1',   require: false
+  gem 'capistrano-bundler',                       require: false
+  gem 'capistrano-rails',             '~> 1.4',   require: false
+  gem 'capistrano3-puma',             '5.2.0',    require: false
+  gem 'capistrano-sidekiq',                       require: false
+  gem 'capistrano-logtail',           '~> 0.1',   require: false
+  gem 'capistrano-rails-console',     '~> 2.3',   require: false
+  gem 'capistrano-local-precompile',  '~> 1.2.0', require: false
+  gem 'capistrano-faster-assets',     '~> 1.0',   require: false
+  gem 'capistrano-rails-collection',  '~> 0.1.0', require: false
+  gem "capistrano-anycable",                      require: false
+
+  gem 'listen'
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'pry-rails'
+  gem 'table_print'
+  gem 'awesome_print'
 end
 
 group :test do

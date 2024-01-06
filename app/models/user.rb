@@ -50,7 +50,7 @@ class User < ApplicationRecord
   end
 
   def set_bank
-    User::Bank.create(user_id: self.id) if self.bank.blank?
+    User::Bank.create(user_id: self.id) if self.user_bank.blank?
   end
 
   def default_address

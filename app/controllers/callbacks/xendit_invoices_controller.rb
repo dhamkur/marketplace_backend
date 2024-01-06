@@ -1,4 +1,6 @@
 class Callbacks::XenditInvoicesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     order = Order.find_by(code: params[:external_id])
 

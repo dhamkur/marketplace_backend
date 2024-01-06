@@ -6,21 +6,19 @@ class Callbacks::XenditInvoicesController < ApplicationController
 
     if order.present?
       if params[:status] == "PAID"
-        notice  = :notice
+        status  = 200
         message = "Your payment has been verified"
         order.update(status: "payment_verified", formatted_response: params)
       else
-        notice  = :alert
+        status  = 400
         message = "Your payment unsuccessfull"
         order.update_column(:formatted_response, params)
       end
-
-      sign_in(order.user)
     else
-      notice  = :alert
+      status  = 400
       message = "Order not found"
     end
 
-    redirect_to users_orders_url, notice => message
+    render json: { status: status, message: message }, status: :ok
   end
 end

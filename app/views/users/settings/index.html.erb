@@ -20,17 +20,17 @@
               <tr>
                 <th>Bank</th>
                 <td>:</td>
-                <td><%= current_user.user_bank.bank.name %></td>
+                <td><%= current_user.user_bank&.bank&.name || "Empty, please fill in your data" %></td>
               </tr>
               <tr>
                 <th>Account Holder</th>
                 <td>:</td>
-                <td><%= current_user.user_bank.account_holder %></td>
+                <td><%= current_user.user_bank&.account_holder || "Empty, please fill in your data" %></td>
               </tr>
               <tr>
                 <th>Account Number</th>
                 <td>:</td>
-                <td><%= current_user.user_bank.account_number %></td>
+                <td><%= current_user.user_bank&.account_number || "Empty, please fill in your data" %></td>
               </tr>
             </tbody>
           </table>

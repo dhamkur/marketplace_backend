@@ -12,5 +12,5 @@
 #
 class User::Bank < ApplicationRecord
   belongs_to :user
-  belongs_to :bank, class_name: "::Bank"
+  belongs_to :bank, class_name: "::Bank", optional: true
 end

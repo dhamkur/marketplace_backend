@@ -8,11 +8,11 @@ class Users::CheckoutsController < UserController
         user_id: current_user.id,
         sub_total: current_user.cart.total_amount,
         total_payment: current_user.cart.total_amount,
-        city: my_address.city,
-        state: my_address.state,
-        country: my_address.country,
-        zip_code: my_address.zip_code,
-        address: my_address.address
+        city: my_address&.city,
+        state: my_address&.state,
+        country: my_address&.country,
+        zip_code: my_address&.zip_code,
+        address: my_address&.address
       )
 
       if order.present?

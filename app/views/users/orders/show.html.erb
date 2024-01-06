@@ -13,7 +13,7 @@
           <td><strong>Status</strong>: <%= @order.status.try(:humanize) %></td>
         </tr>
         <tr>
-          <td><strong>Payment Method</strong>: <%= @order.payment_method.try(:humanize) %></td>
+          <td><strong>Payment Method</strong>: <%= @order.payment_method %></td>
         </tr>
         <% if @order.address.present? %>
           <tr>

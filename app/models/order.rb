@@ -52,4 +52,10 @@ class Order < ApplicationRecord
 
     set_history(self.user, self, "out", self.total_payment, "completed") if is_wallet && is_paid
   end
+
+  def raw_total_payment
+    total = sub_total + total_delivery_fee + tax_amount - discount
+
+    return total
+  end
 end

@@ -52,4 +52,10 @@ class User < ApplicationRecord
   def set_bank
     User::Bank.create(user_id: self.id) if self.bank.blank?
   end
+
+  def default_address
+    address = User::Address.find_by(is_default: true, user_id: self.id)
+
+    return address
+  end
 end

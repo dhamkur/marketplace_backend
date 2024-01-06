@@ -52,20 +52,22 @@
             </div>
 
             <% if @orders.present? %>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Code</th>
-                    <th>Total Payment</th>
-                    <th>Status</th>
-                    <th class="text-center">Created At</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= render partial: "order", collection: @orders %>
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Code</th>
+                      <th>Total Payment</th>
+                      <th>Status</th>
+                      <th class="text-center">Created At</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%= render partial: "order", collection: @orders %>
+                  </tbody>
+                </table>
+              </div>
 
               <div class="mb-4"></div>
 

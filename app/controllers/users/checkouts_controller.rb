@@ -3,10 +3,16 @@ class Users::CheckoutsController < UserController
 
   def create
     if current_user.cart.items.selected.present?
-      order = Order.create(
+      my_address = current_user.default_address
+      order      = Order.create(
         user_id: current_user.id,
         sub_total: current_user.cart.total_amount,
-        total_payment: current_user.cart.total_amount
+        total_payment: current_user.cart.total_amount,
+        city: my_address.city,
+        state: my_address.state,
+        country: my_address.country,
+        zip_code: my_address.zip_code,
+        address: my_address.address
       )
 
       if order.present?
@@ -39,27 +45,39 @@ class Users::CheckoutsController < UserController
   def show;end
 
   def update
-    promotion = Promotion.find_by(code: params[:applied_promo])
+    case params[:type]
+    when "promotion"
+      promotion = Promotion.find_by(code: params[:applied_promo])
 
-    if promotion.present?
-      discount = promotion.discount(@order.total_payment)
+      if promotion.present?
+        discount = promotion.discount(@order.total_payment)
 
-      @order.update(
-        promotion_id: promotion.id,
-        applied_promo: params[:applied_promo],
-        discount: discount,
-        total_payment: @order.total_amount - discount
-      )
+        @order.update_columns(
+          promotion_id: promotion.id,
+          applied_promo: params[:applied_promo],
+          discount: discount,
+          total_payment: @order.total_amount - discount
+        )
 
-      redirect_back(
-        fallback_location: users_checkout_path(@order),
-        notice: "Promo code has been applied"
-      )
-    else
-      redirect_back(
-        fallback_location: users_checkout_path(@order),
-        alert: "Promo code not found"
-      )
+        redirect_back(
+          fallback_location: users_checkout_path(@order),
+          notice: "Promo code has been applied"
+        )
+      else
+        @order.update_columns(
+          promotion_id: nil,
+          applied_promo: nil,
+          discount: 0,
+          total_payment: @order.raw_total_payment
+        )
+
+        redirect_back(
+          fallback_location: users_checkout_path(@order),
+          alert: "Promo code not found"
+        )
+      end
+    when "delivery"
+      @order.update_columns(object_params)
     end
   end
 
@@ -67,5 +85,14 @@ class Users::CheckoutsController < UserController
 
   def find_order
     @order = Order.find_by(id: params[:id])
+  end
+
+  def object_params
+    payload = {
+      city: params[:city], state: params[:state], country: params[:country],
+      zip_code: params[:zip_code], address: params[:address]
+    }
+
+    return payload
   end
 end

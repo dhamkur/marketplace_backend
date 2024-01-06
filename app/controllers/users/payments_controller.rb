@@ -7,10 +7,18 @@ class Users::PaymentsController < UserController
       wallet = current_user.wallet
 
       if wallet.amount >= order.total_payment
-        order.update(payment_method: "e-wallet", status: "payment_verified")
-        wallet.update(amount: wallet.amount - order.total_payment)
+        used_wallet = wallet.amount - order.total_payment
+
+        order.update(
+          payment_method: "e-wallet",
+          status: "payment_verified",
+          used_wallet: used_wallet
+        )
+        wallet.update(amount: used_wallet)
 
         redirect_to users_orders_path, notice: "Your payment has been verified"
+      else
+        redirect_to users_orders_path, alert: "Your wallet amount insufficient"
       end
     when "online-payment"
       if order.xendit_invoice_url.blank?

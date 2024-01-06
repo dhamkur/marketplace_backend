@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <h4>Address</h4>
+
+    <%= form_with(url: users_checkout_path(@order, type: "delivery"),
+        data: { controller: "form", form_target: "source" }, method: :put) do |f| %>
+      <div class="row">
+        <div class="col-3">
+          <div class="mb-3">
+            <label class="form-label">City<span style="color: red">*</span></label>
+            <%= f.text_field :city, class: "form-control", placeholder: "Your City",
+                data: { action: "input->form#search" }, value: @order.city %>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="mb-3">
+            <label class="form-label">State<span style="color: red">*</span></label>
+            <%= f.text_field :state, class: "form-control", placeholder: "Your State",
+                data: { action: "input->form#search" }, value: @order.state %>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="mb-3">
+            <label class="form-label">Nationality<span style="color: red">*</span></label>
+            <%= f.country_select :country, { format: :with_data_attrs, priority_countries: ["ID"],
+                selected: @order.country, include_blank: "Select Country" },
+                { class: "form-select" }, data: { action: "input->form#search" } %>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="mb-3">
+            <label class="form-label">Zip Code<span style="color: red">*</span></label>
+            <%= f.text_field :zip_code, class: "form-control", placeholder: "Your Zip Code",
+                data: { action: "input->form#search" }, value: @order.zip_code %>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Address<span style="color: red">*</span></label>
+        <%= f.text_area :address, class: "form-control", rows: 5, placeholder: "Your address",
+            data: { action: "input->form#search" }, value: @order.address %>
+      </div>
+    <% end %>
+  </div>
+</div>

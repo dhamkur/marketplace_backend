@@ -12,7 +12,7 @@
     </tr>
   </table>
 
-  <%= form_with(url: users_checkout_path(@order), method: :put, data: { turbo: false }) do |f| %>
+  <%= form_with(url: users_checkout_path(@order, type: "promotion"), method: :put, data: { turbo: false }) do |f| %>
     <div class="input-group mb-3">
       <input type="text" class="form-control" name="applied_promo" placeholder="Enter promo code" />
       <button class="btn btn-primary" type="submit">Apply</button>

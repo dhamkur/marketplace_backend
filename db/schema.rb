@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_01_032613) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_06_075519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -187,6 +187,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_01_032613) do
     t.string "xendit_external_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "formatted_response"
     t.index ["code"], name: "index_orders_on_code"
     t.index ["promotion_id"], name: "index_orders_on_promotion_id"
     t.index ["tax_id"], name: "index_orders_on_tax_id"

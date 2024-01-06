@@ -47,4 +47,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :callbacks do
+    resources :xendit_invoices, only: :create
+  end
 end

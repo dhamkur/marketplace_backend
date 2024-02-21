@@ -3,7 +3,7 @@
 <div class="container">
   <footer class="py-5">
     <div class="row">
-      <div class="col-lg-6 col-sm-2 mb-3">
+      <div class="col-lg-2 col-sm-2 mb-3">
         <h5>Links</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><%= link_to "Home", root_path, class: "nav-link p-0 text-body-secondary" %></li>
@@ -13,7 +13,7 @@
         </ul>
       </div>
 
-      <div class="col-lg-4 col-sm-8 mb-3">
+      <div class="col-lg-6 col-sm-8 mb-3">
         <%= form_for(Subscriber.new, url: subscribers_path, method: :post, data: { turbo: false }) do |f| %>
           <h5>Subscribe to our newsletter</h5>
           <p>Monthly digest of what's new and exciting from us.</p>

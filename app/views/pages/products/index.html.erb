@@ -1,6 +1,6 @@
 <section id="products">
   <div class="row">
-    <div class="col-lg-3 col-xs-6 mb-3">
+    <div class="col-lg-3 col-sm-4 mb-3">
       <div class="card">
         <div class="card-body">
           <%= search_form_for @search, url: products_path, data: { turbo_frame: "tables",
@@ -46,11 +46,11 @@
       </div>
     </div>
 
-    <div class="col-lg-9 col-xs-6">
+    <div class="col-lg-9 col-sm-8">
       <%= turbo_frame_tag "tables" do %>
         <% if @objects.present? %>
           <div class="row">
-            <%= render partial: "shared/product", collection: @objects, locals: { column: "lg-4 col-xs-6" } %>
+            <%= render partial: "shared/product", collection: @objects, locals: { column: "lg-4 col-sm-6" } %>
           </div>
           <%= render "shared/pagy", pagy: @pagy %>
         <% else %>

@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "products-page-#{@pagy.page}" do %>
   <div class="row">
-    <%= render partial: "shared/product", collection: @objects, locals: { column: "lg-4 col-xs-6" } %>
+    <%= render partial: "shared/product", collection: @objects, locals: { column: "lg-4 col-sm-6" } %>
   </div>
   <%= render "shared/next_page" %>
 <% end %>

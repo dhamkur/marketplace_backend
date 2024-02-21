@@ -12,9 +12,13 @@ export default class extends Controller {
       const variantPrice = document.querySelector("#variant-price");
       const variantStock = document.querySelector("#variant-stock");
       const variantId = document.querySelector("[name='variant_id']");
+      let amount = new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      }).format(element.getAttribute("data-price"));
 
       collapseVariant.classList.remove("d-none");
-      variantPrice.innerHTML = `$${element.getAttribute("data-price")}`;
+      variantPrice.innerHTML = amount;
       variantStock.innerHTML = element.getAttribute("data-stock");
       variantId.value = value;
     }

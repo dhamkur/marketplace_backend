@@ -2,7 +2,7 @@ module ApplicationHelper
   include Pagy::Frontend
 
   def money(amount)
-    number_to_currency(amount, precision: 2, delimiter: ".", unit: "Rp. ")
+    number_to_currency(amount, precision: 2, delimiter: ".", separator: ",", unit: "Rp ")
   end
 
   def condition(check, value)

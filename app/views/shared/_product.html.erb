@@ -2,7 +2,7 @@
   <div class="card">
     <%= image_tag("placeholder_600_400.svg", class: "card-img-top") %>
     <div class="card-body">
-      <h5 class="card-title"><%= product.name.truncate(19) %> - <%= money(product.starting_price) %></h5>
+      <h5 class="card-title"><%= product.name.truncate(15) %> - <%= money(product.starting_price) %></h5>
       <div class="d-grid">
         <%= link_to "View Detail", product_path(product.slug), class: "btn btn-primary d-block mb-3", target: "_top" %>
         <% if user_signed_in? && is_on_wishlist(product.id) %>

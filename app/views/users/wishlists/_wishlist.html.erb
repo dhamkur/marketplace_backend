@@ -1,8 +1,8 @@
-<div class="col-3 mb-5">
+<div class="col-lg-4 col-sm-6 mb-5">
   <div class="card">
     <%= image_tag("placeholder_600_400.svg", class: "card-img-top") %>
     <div class="card-body">
-      <h5 class="card-title"><%= wishlist.product.name.truncate(19) %> - <%= money(wishlist.product.starting_price) %></h5>
+      <h5 class="card-title"><%= wishlist.product.name.truncate(15) %> - <%= money(wishlist.product.starting_price) %></h5>
       <%= link_to "View Detail", product_path(wishlist.product.slug), class: "btn btn-primary d-block mb-3", target: "_top" %>
       <% if user_signed_in? && is_on_wishlist(wishlist.product.id) %>
         <%= button_to "Remove from Wishlist", users_wishlist_path(wishlist.product.id),

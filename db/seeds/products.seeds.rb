@@ -12,8 +12,8 @@ after :merchants do
       category_id: Category.pluck(:id).sample,
       name: Faker::Commerce.product_name,
       description: Faker::Lorem.paragraph(sentence_count: 5),
-      starting_price: Faker::Commerce.price(range: 1..10),
-      delivery_fee: Faker::Commerce.price(range: 1..10),
+      starting_price: Faker::Commerce.price(range: 1000..100000),
+      delivery_fee: Faker::Commerce.price(range: 1000..10000),
       status: "active"
     )
 
@@ -22,8 +22,8 @@ after :merchants do
         Product::Variant.create(
           product_id: product.id,
           name: variant.sample,
-          amount: Faker::Commerce.price(range: 100..200),
-          discount: Faker::Commerce.price(range: 10..99),
+          amount: Faker::Commerce.price(range: 100000..200000),
+          discount: Faker::Commerce.price(range: 100000..190000),
           stock: 100,
           status: "in_stock"
         )

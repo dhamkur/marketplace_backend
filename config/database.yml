@@ -8,15 +8,3 @@ development:
   database: marketplace_backend
   username: <%= ENV["DB_USERNAME"] %>
   password: <%= ENV["DB_PASSWORD"] %>
-
-staging:
-  <<: *default
-  database: marketplace_backend
-  username: <%= ENV["DB_USERNAME"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
-
-production:
-  <<: *default
-  database: marketplace_backend
-  username: <%= ENV["DB_USERNAME"] %>
-  password: <%= ENV["DB_PASSWORD"] %>

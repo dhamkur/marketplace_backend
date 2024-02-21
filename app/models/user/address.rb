@@ -20,7 +20,7 @@ class User::Address < ApplicationRecord
   before_save :validate_multiple_default_address
   before_create :validate_max_limit_address
 
-  validates :address_name, :receiver_name, :address, :city, :contact_number,
+  validates :label, :receiver, :address, :city, :phone_number,
             :country, :state, :zip_code, presence: true
 
   def validate_multiple_default_address

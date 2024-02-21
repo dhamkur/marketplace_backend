@@ -18,11 +18,6 @@
           <table class="table table-borderless">
             <tbody>
               <tr>
-                <th>Bank</th>
-                <td>:</td>
-                <td><%= current_user.user_bank&.bank&.name || "Empty, please fill in your data" %></td>
-              </tr>
-              <tr>
                 <th>Account Holder</th>
                 <td>:</td>
                 <td><%= current_user.user_bank&.account_holder || "Empty, please fill in your data" %></td>
@@ -31,6 +26,11 @@
                 <th>Account Number</th>
                 <td>:</td>
                 <td><%= current_user.user_bank&.account_number || "Empty, please fill in your data" %></td>
+              </tr>
+              <tr>
+                <th>Bank</th>
+                <td>:</td>
+                <td><%= current_user.user_bank&.bank&.name || "Empty, please fill in your data" %></td>
               </tr>
             </tbody>
           </table>
@@ -57,54 +57,56 @@
           <% end %>
         </div>
         <% if current_user.addresses.present? %>
-          <table class="table table-borderless">
-            <thead>
-              <tr>
-                <th>Label</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Country</th>
-                <th>Zip Code</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% current_user.addresses.each do |address| %>
+          <div class="table-responsive">
+            <table class="table table-borderless">
+              <thead>
                 <tr>
-                  <td>
-                    <%= address.label %>&nbsp;
-                    <% if address.is_default %>
-                      <span class="badge rounded-pill text-bg-primary">Default Address</span>
-                    <% end %>
-                  </td>
-                  <td><%= address.address %></td>
-                  <td><%= address.city %></td>
-                  <td><%= address.state %></td>
-                  <td><%= address.country %></td>
-                  <td><%= address.zip_code %></td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
-                      style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-                        Action
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <%= link_to "Edit", edit_users_setting_path(address, type: "address"),
-                              class: "dropdown-item", data: { turbo_frame: "modal" } %>
-                        </li>
-                        <li>
-                          <%= link_to "Delete", users_setting_path(address, type: "address"),
-                              class: "dropdown-item", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-                        </li>
-                      </ul>
-                    </div> 
-                  </td>
+                  <th>Label</th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Country</th>
+                  <th>Zip Code</th>
+                  <th>Action</th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% current_user.addresses.each do |address| %>
+                  <tr>
+                    <td>
+                      <%= address.label %>&nbsp;
+                      <% if address.is_default %>
+                        <span class="badge rounded-pill text-bg-primary">Default Address</span>
+                      <% end %>
+                    </td>
+                    <td><%= address.address %></td>
+                    <td><%= address.city %></td>
+                    <td><%= address.state %></td>
+                    <td><%= address.country %></td>
+                    <td><%= address.zip_code %></td>
+                    <td>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+                          Action
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <%= link_to "Edit", edit_users_setting_path(address, type: "address"),
+                                class: "dropdown-item", data: { turbo_frame: "modal" } %>
+                          </li>
+                          <li>
+                            <%= link_to "Delete", users_setting_path(address, type: "address"),
+                                class: "dropdown-item", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                          </li>
+                        </ul>
+                      </div> 
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
         <% end %>
       </div>
     </div>

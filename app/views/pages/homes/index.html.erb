@@ -39,7 +39,7 @@
 
 <section id="categories">
   <div class="row">
-    <%= render partial: "shared/product", collection: @objects, locals: { column: 3 } %>
+    <%= render partial: "shared/product", collection: @objects, locals: { column: "lg-4 col-xs-6" } %>
   </div>
   <% if @pagy.next.present? %>
     <%= render "shared/next_page" %>

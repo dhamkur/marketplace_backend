@@ -87,7 +87,8 @@ class Users::SettingsController < UserController
   def address_params
     params.require(:user_address).permit(
       :label, :address, :city, :state,
-      :country, :zip_code, :is_default
+      :country, :zip_code, :is_default,
+      :receiver, :phone_number
     ).merge(user_id: current_user.id)
   end
 end

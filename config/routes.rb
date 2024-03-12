@@ -48,6 +48,16 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_scope :merchant do
+    namespace :merchants do
+      resources :campaigns
+      resources :orders
+      resources :products
+      resources :settings
+      resources :wallets
+    end
+  end
+
   namespace :callbacks do
     resources :xendit_invoices, only: :create
   end

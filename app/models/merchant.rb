@@ -28,4 +28,6 @@ class Merchant < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   include ImageUploader::Attachment(:avatar)
+
+  has_many :products, dependent: :destroy
 end

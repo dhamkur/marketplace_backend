@@ -27,6 +27,8 @@ class Merchant < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  STATUS = ["pending", "approved", "rejected"]
+
   include ImageUploader::Attachment(:avatar)
 
   has_many :products, dependent: :destroy

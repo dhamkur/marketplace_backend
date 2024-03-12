@@ -16,6 +16,7 @@
 #
 class Product < ApplicationRecord
   STATUS = ["active", "inactive"]
+  add_scope_and_check_method(constants: STATUS, field_name: "status")
 
   belongs_to :merchant
   belongs_to :category

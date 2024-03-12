@@ -14,7 +14,7 @@
     </li>
     <li>
       <%= link_to merchants_wallets_path, class: "dropdown-item" do %>
-        My Wallet <span class="badge rounded-pill text-bg-danger"><%= money(current_merchant&.wallet&.amount) %></span>
+        My Wallet <span class="badge rounded-pill text-bg-danger"><%= money(current_merchant&.wallet&.amount || 0) %></span>
       <% end %>
     </li>
     <li><hr class="dropdown-divider"></li>

@@ -1,25 +1,28 @@
 <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <%= current_user.name || current_user.email %>
+    <%= current_merchant.merchant_name %>
   </a>
   <ul class="dropdown-menu">
     <li>
-      <%= link_to "My Carts", users_carts_path, class: "dropdown-item" %>
+      <%= link_to "My Campaigns", merchants_campaigns_path, class: "dropdown-item" %>
     </li>
     <li>
-      <%= link_to users_wallets_path, class: "dropdown-item" do %>
-        My Wallet <span class="badge rounded-pill text-bg-danger"><%= money(current_user&.wallet&.amount) %></span>
+      <%= link_to "My Orders", merchants_orders_path, class: "dropdown-item" %>
+    </li>
+    <li>
+      <%= link_to "My Products", merchants_products_path, class: "dropdown-item" %>
+    </li>
+    <li>
+      <%= link_to merchants_wallets_path, class: "dropdown-item" do %>
+        My Wallet <span class="badge rounded-pill text-bg-danger"><%= money(current_merchant&.wallet&.amount) %></span>
       <% end %>
-    </li>
-    <li>
-      <%= link_to "My Wishlists", users_wishlists_path, class: "dropdown-item" %>
     </li>
     <li><hr class="dropdown-divider"></li>
     <li>
-      <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %>
+      <%= link_to "Profile", edit_merchant_registration_path, class: "dropdown-item" %>
     </li>
     <li>
-      <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete } %>
+      <%= link_to "Logout", destroy_merchant_session_path, class: "dropdown-item", data: { turbo_method: :delete } %>
     </li>
   </ul>
 </li>

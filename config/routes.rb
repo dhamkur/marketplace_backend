@@ -54,7 +54,9 @@ Rails.application.routes.draw do
       resources :orders
       resources :products
       resources :settings
-      resources :wallets
+      resources :wallets, except: :edit do
+        post "withdrawal", to: "wallets#withdrawal", on: :collection
+      end
     end
   end
 

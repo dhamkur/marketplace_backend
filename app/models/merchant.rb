@@ -31,5 +31,9 @@ class Merchant < ApplicationRecord
 
   include ImageUploader::Attachment(:avatar)
 
+  has_one :wallet, dependent: :destroy, foreign_key: "userable_id"
+
   has_many :products, dependent: :destroy
+  has_many :order_items, through: :products, dependent: :destroy
+  has_many :orders, through: :order_items, dependent: :destroy
 end

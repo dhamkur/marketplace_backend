@@ -1,0 +1,27 @@
+<tr>
+  <td><%= product.name %></td>
+  <td><%= product.category.name %></td>
+  <td><%= money(product.starting_price) %></td>
+  <td class="text-capitalize"><%= product.status.humanize %></td>
+  <td class="text-center"><%= date_time(product.created_at) %></td>
+  <td class="text-center"><%= date_time(product.updated_at) %></td>
+  <td>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+      >
+        Action
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <%= link_to "Detail", merchants_product_path(product),
+              class: "dropdown-item", data: { turbo: false } %>
+        </li>
+        <li>
+          <%= link_to "Edit", edit_merchants_product_path(product),
+              class: "dropdown-item", data: { turbo: false } %>
+        </li>
+      </ul>
+    </div>
+  </td>
+</td>

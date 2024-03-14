@@ -1,4 +1,6 @@
 class MerchantController < ApplicationController
+  include Crudable
+
   before_action :authenticate_merchant!
 
   private

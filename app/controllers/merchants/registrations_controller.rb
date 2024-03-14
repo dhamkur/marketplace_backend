@@ -9,4 +9,8 @@ class Merchants::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: keys)
     devise_parameter_sanitizer.permit(:account_update, keys: keys)
   end
+
+  def after_sign_up_path(resource)
+    merchants_dashboards_path
+  end
 end

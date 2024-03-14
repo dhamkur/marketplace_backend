@@ -1,20 +1,24 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
-    <%= link_to "MARKETPLACE", root_path, class: "navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <%= link_to "MARKETPLACE", root_header, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <%= form_with url: products_path, html: { method: :get, class: "d-flex me-auto" },
-          data: { turbo_frame: "tables", turbo_stream: true, turbo_action: "advance",
-          controller: "form", form_target: "source" } do |f| %>
-        <input class="form-control me-2" name="q[name_cont]" type="search" placeholder="Search" />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+    <div class="collapse navbar-collapse" id="navbar-content">
+      <% unless merchant_signed_in? || admin_signed_in? %>
+        <%= form_with url: products_path, html: { method: :get, class: "d-flex me-auto" },
+            data: { turbo_frame: "tables", turbo_stream: true, turbo_action: "advance",
+            controller: "form", form_target: "source" } do |f| %>
+          <input class="form-control me-2" name="q[name_cont]" type="search" placeholder="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        <% end %>
+      <% else %>
+        <div class="d-flex m-auto"></div>
       <% end %>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to "Products", products_path, class: "nav-link" %>
+          <%= link_to "Products", product_header, class: "nav-link" %>
         </li>
 
         <% if user_signed_in? %>

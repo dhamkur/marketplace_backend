@@ -15,6 +15,8 @@
 #  updated_at     :datetime         not null
 #
 class Product < ApplicationRecord
+  include Scopeable
+
   STATUS = ["active", "inactive"]
   add_scope_and_check_method(constants: STATUS, field_name: "status")
 

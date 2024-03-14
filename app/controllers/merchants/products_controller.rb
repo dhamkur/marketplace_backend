@@ -1,20 +1,26 @@
 class Merchants::ProductsController < MerchantController
-  def index
-    @pagy, @products = pagy(current_merchant.products.active.newest)
+  private
+
+  def find_query
+    @query = current_merchant.products.newest
   end
 
-  def new
+  def find_object
+    @object = Product.find_by(id: params[:id])
   end
 
-  def create
+  def find_class
+    @class = Product
   end
 
-  def edit
+  def find_config
+    @config = {
+      partial: "merchants/products/lists",
+      redirect_location: merchants_products_path
+    }
   end
 
-  def update
-  end
-
-  def destroy
+  def object_params
+    params.require(:bank).permit(:name)
   end
 end

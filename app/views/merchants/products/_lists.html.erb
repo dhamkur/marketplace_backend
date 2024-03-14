@@ -1,0 +1,32 @@
+<%= turbo_frame_tag "tables" do %>
+  <div class="row">
+    <% if @objects.present? %>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Starting Price</th>
+              <th>Status</th>
+              <th class="text-center">Created At</th>
+              <th class="text-center">Updated At</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @objects %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mb-4"></div>
+
+      <%= render "shared/pagy", pagy: @pagy %>
+    <% else %>
+      <div class="text-center">
+        <h1>Data Not Found</h1>
+      </div>
+    <% end %>
+  </div>
+<% end %>

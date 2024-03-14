@@ -1,7 +1,7 @@
 class Pages::ProductsController < ApplicationController
   def index
     @categories = Category.all.limit(15)
-    @search = Product.where(status: "active").ransack(params[:q])
+    @search = Product.active.newest.ransack(params[:q])
     @pagy, @objects = pagy(
       @search.result,
       link_extra: "data-turbo-frame='tables' data-turbo-stream='true'",

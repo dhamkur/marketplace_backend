@@ -1,0 +1,12 @@
+<div class="list-group">
+  <%= link_to "My Dashboards", merchants_dashboards_path,
+      class: "list-group-item list-group-item-action #{menu_condition("merchants/dashboards", "active")}" %>
+  <%= link_to "My Wallets", merchants_wallets_path,
+      class: "list-group-item list-group-item-action #{menu_condition("merchants/wallets", "active")}" %>
+  <%= link_to "My Orders", merchants_orders_path,
+      class: "list-group-item list-group-item-action #{menu_condition("merchants/orders", "active")}" %>
+  <%= link_to "My Products", merchants_products_path,
+      class: "list-group-item list-group-item-action #{menu_condition("merchants/products", "active")}" %>
+  <%= link_to "My Settings", merchants_settings_path,
+      class: "list-group-item list-group-item-action #{menu_condition("merchants/settings", "active")}" %>
+</div>

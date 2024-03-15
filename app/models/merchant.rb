@@ -27,13 +27,14 @@ class Merchant < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  STATUS = ["pending", "approved", "rejected"]
-
+  include General
   include ImageUploader::Attachment(:avatar)
+
+  STATUS = ["pending", "approved", "rejected"]
 
   has_one :wallet, dependent: :destroy, foreign_key: "userable_id"
 
   has_many :products, dependent: :destroy
-  has_many :order_items, through: :products, dependent: :destroy
-  has_many :orders, through: :order_items, dependent: :destroy
+
+  after_create :set_wallet
 end

@@ -23,8 +23,8 @@ class Product < ApplicationRecord
   belongs_to :merchant
   belongs_to :category
 
-  has_many :variants, class_name: "Product::Variant"
-  has_many :photos, foreign_key: "photoable_id"
+  has_many :photos, foreign_key: "photoable_id", dependent: :destroy
+  has_many :variants, class_name: "Product::Variant", dependent: :destroy
 
   before_save :set_slug
 

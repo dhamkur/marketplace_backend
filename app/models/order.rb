@@ -28,6 +28,7 @@
 #
 class Order < ApplicationRecord
   include General
+  include Scopeable
 
   belongs_to :user
   belongs_to :promotion, optional: true
@@ -40,6 +41,9 @@ class Order < ApplicationRecord
   validates :status, inclusion: { in: Transaction::ORDER }
 
   scope :by_status, -> (data) { where(status: data).order(created_at: :desc) }
+  scope :by_merchant, -> (merchant_id) {
+    joins(items: [:product]).where("products.merchant_id = ?", merchant_id).newest
+  }
 
   before_validation do
     set_code("INV")

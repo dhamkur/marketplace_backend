@@ -28,4 +28,28 @@ module General
       )
     end
   end
+
+  def set_cart
+    Cart.create(
+      userable_id: self.id,
+      userable_type: self.class.name
+    ) if self.cart.blank?
+  end
+
+  def set_wallet
+    Wallet.create(
+      userable_id: self.id,
+      userable_type: self.class.name
+    ) if self.wallet.blank?
+  end
+
+  def set_bank
+    User::Bank.create(user_id: self.id) if self.user_bank.blank?
+  end
+
+  def default_address
+    address = User::Address.find_by(is_default: true, user_id: self.id)
+
+    return address
+  end
 end

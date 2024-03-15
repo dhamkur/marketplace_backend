@@ -18,6 +18,7 @@
 #
 class Order::Item < ApplicationRecord
   include General
+  include Scopeable
 
   belongs_to :order
   belongs_to :product
@@ -27,4 +28,8 @@ class Order::Item < ApplicationRecord
   validates :status, inclusion: { in: Transaction::ORDER }
 
   before_validation :set_status
+
+  scope :by_merchant, -> (merchant_id) {
+    joins(:product).where("products.merchant_id = ?", merchant_id).newest
+  }
 end

@@ -20,6 +20,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  include General
   include ImageUploader::Attachment(:avatar)
 
   has_one :user_bank, class_name: "User::Bank", dependent: :destroy
@@ -34,28 +35,4 @@ class User < ApplicationRecord
   has_many :addresses, class_name: "User::Address", dependent: :destroy
 
   after_create :set_bank, :set_cart, :set_wallet
-
-  def set_cart
-    Cart.create(
-      userable_id: self.id,
-      userable_type: self.class.name
-    ) if self.cart.blank?
-  end
-
-  def set_wallet
-    Wallet.create(
-      userable_id: self.id,
-      userable_type: self.class.name
-    ) if self.wallet.blank?
-  end
-
-  def set_bank
-    User::Bank.create(user_id: self.id) if self.user_bank.blank?
-  end
-
-  def default_address
-    address = User::Address.find_by(is_default: true, user_id: self.id)
-
-    return address
-  end
 end

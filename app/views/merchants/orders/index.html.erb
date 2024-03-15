@@ -3,30 +3,15 @@
     <%= render "shared/merchant/sidebar" %>
   </div>
   <div class="col-9">
-    <div class="row">
-      <div class="col-4">
-        <div class="card">
-          <div class="card-body">
-            TESTING
-          </div>
+    <div class="d-flex">
+      <%= search_form_for @search, url: merchants_orders_path, html: { class: "me-auto" }, data: { turbo_frame: "tables",
+          turbo_stream: true, controller: "form", form_target: "source" } do |f| %>
+        <div class="mb-3">
+          <%= f.search_field :code_cont, class: "form-control", placeholder: "Search order code",
+              data: { action: "input->form#search" } %>
         </div>
-      </div>
-
-      <div class="col-4">
-        <div class="card">
-          <div class="card-body">
-            TESTING
-          </div>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="card">
-          <div class="card-body">
-            TESTING
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
+    <%= render "lists" %>
   </div>
 </div>

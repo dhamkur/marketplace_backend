@@ -51,8 +51,8 @@ Rails.application.routes.draw do
   devise_scope :merchant do
     namespace :merchants do
       resources :campaigns
-      resources :dashboards
-      resources :orders
+      resources :dashboards, only: :index
+      resources :orders, only: [:index, :show]
       resources :products
       resources :settings
       resources :wallets, except: :edit do

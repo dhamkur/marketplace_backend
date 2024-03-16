@@ -8,7 +8,7 @@
         <div class="card">
           <div class="card-body">
             <h6 class="font-weight-bold">Wallet</h6>
-            <%= money(current_merchant.wallet.amount) %>
+            <%= money(current_merchant.try(:wallet).try(:amount) || 0) %>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
           </tr>
         </thead>
         <tbody>
-          <%= render partial: "order", collection: @orders %>
+          <%= render partial: "order", collection: @orders.limit(10) %>
         </tbody>
       </table>
     </div>

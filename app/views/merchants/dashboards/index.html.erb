@@ -8,7 +8,7 @@
         <div class="card">
           <div class="card-body">
             <h6 class="font-weight-bold">Wallet</h6>
-            <%= money(current_merchant.try(:wallet).try(:amount) || 0) %>
+            <%= money(current_merchant&.wallet&.amount || 0) %>
           </div>
         </div>
       </div>

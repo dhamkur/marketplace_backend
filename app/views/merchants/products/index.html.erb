@@ -3,10 +3,20 @@
     <%= render "shared/merchant/sidebar" %>
   </div>
   <div class="col-9">
-    <div class="mb-3">
-      <%= link_to "+ Add Product", new_merchants_product_path,
-          class: "btn btn-primary btn-sm", data: { turbo: false } %>
+    <div class="d-flex">
+      <div class="me-auto mb-3">
+        <%= link_to "+ Add Product", new_merchants_product_path,
+            class: "btn btn-primary btn-sm", data: { turbo: false } %>
+      </div>
+
+      <%= search_form_for @search, url: merchants_products_path, data: { turbo_frame: "tables",
+          turbo_stream: true, controller: "form", form_target: "source" } do |f| %>
+        <%= f.search_field :name_cont, class: "form-control", placeholder: "Search...",
+            data: { action: "input->form#search" } %>
+      <% end %>
     </div>
+
+    <div class="mb-3 mt-3"></div>
 
     <%= render "lists" %>
   </div>

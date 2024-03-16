@@ -4,29 +4,119 @@
   </div>
   <div class="col-9">
     <div class="row">
-      <div class="col-4">
+      <div class="col-6">
         <div class="card">
           <div class="card-body">
-            TESTING
+            <h5 class="mb-2 mt-2">
+              <span class="fw-light">My Balance:</span> <%= money(current_user&.wallet&.amount) %>
+            </h5>
           </div>
         </div>
       </div>
 
-      <div class="col-4">
+      <div class="col-6">
         <div class="card">
           <div class="card-body">
-            TESTING
+            <%= form_with(url: merchants_wallets_path) do |f| %>
+              <div class="input-group">
+                <%= f.number_field :amount, class: "form-control", placeholder: "Top-Up Amount" %>
+                <%= f.submit "Top Up", class: "btn btn-outline-primary" %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
 
-      <div class="col-4">
-        <div class="card">
+      <div class="mb-3"></div>
+
+      <%= turbo_frame_tag "tables" do %>
+        <div class="card mb-3">
           <div class="card-body">
-            TESTING
+            <div class="d-flex">
+              <ul class="nav nav-pills me-auto">
+                <li class="nav-item">
+                  <%= link_to "All", merchants_wallets_path, class: "nav-link #{condition(params[:type].blank?, "active")}" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Top Up", merchants_wallets_path(type: "top_up"),
+                      class: "nav-link #{condition(params[:type] == "top_up", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Withdrawal", merchants_wallets_path(type: "withdrawal"),
+                      class: "nav-link #{condition(params[:type] == "withdrawal", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Purchase", merchants_wallets_path(type: "order"),
+                      class: "nav-link #{condition(params[:type] == "order", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+              </ul>
+
+              <%= link_to "Withdraw Balance", new_merchants_wallet_path,
+                  class: "mt-2 text-decoration-none text-primary",
+                  style: "margin-right: 10px;", data: { turbo_frame: "modal" } %>
+            </div>
           </div>
         </div>
-      </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex mb-3">
+              <ul class="nav nav-pills me-auto">
+                <li class="nav-item">
+                  <%= link_to "All", merchants_wallets_path(type: params[:type]), class: "nav-link #{condition(params[:status].blank?, "active")}" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Pending", merchants_wallets_path(status: "pending", type: params[:type]),
+                      class: "nav-link #{condition(params[:status] == "pending", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Canceled", merchants_wallets_path(status: "canceled", type: params[:type]),
+                      class: "nav-link #{condition(params[:status] == "canceled", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Completed", merchants_wallets_path(status: "completed", type: params[:type]),
+                      class: "nav-link #{condition(params[:status] == "completed", "active")}",
+                      data: { turbo_frame: "tables" } %>
+                </li>
+              </ul>
+
+              <%= search_form_for @search, url: merchants_wallets_path(status: params[:status]), data: { turbo_frame: "tables",
+                  turbo_stream: true, controller: "form", form_target: "source" } do |f| %>
+                <%= f.search_field :code_cont, class: "form-control", placeholder: "Search...",
+                    data: { action: "input->form#search" } %>
+              <% end %>
+            </div>
+
+            <% if @histories.present? %>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <td>Transaction ID</td>
+                    <td>Status</td>
+                    <td>Amount</td>
+                    <td>Created At</td>
+                    <td>Action</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%= render partial: "history", collection: @histories %>
+                </tbody>
+              </table>
+
+              <%= render "shared/pagy", pagy: @pagy %>
+            <% else %>
+              <div class="text-center">
+                <h1>Data Not Found</h1>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

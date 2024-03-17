@@ -21,6 +21,14 @@ class Merchants::ProductsController < MerchantController
   end
 
   def object_params
-    params.require(:bank).permit(:name)
+    params.require(:product).permit(
+      :name, photos_attributes: [
+        :id, :_destroy, :photoable_id,
+        :photoable_type, :image, :is_thumbnail
+      ], variants_attributes: [
+        :id, :_destroy, :product_id, :name, :amount,
+        :discount, :stock, :status
+      ]
+    )
   end
 end

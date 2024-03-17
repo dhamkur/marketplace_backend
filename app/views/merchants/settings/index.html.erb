@@ -3,28 +3,64 @@
     <%= render "shared/merchant/sidebar" %>
   </div>
   <div class="col-9">
-    <div class="row">
-      <div class="col-4">
-        <div class="card">
-          <div class="card-body">
-            TESTING
-          </div>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="card">
-          <div class="card-body">
-            TESTING
-          </div>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="card">
-          <div class="card-body">
-            TESTING
-          </div>
+    <div class="card">
+      <div class="card-body">
+        <%= link_to "Edit", edit_merchant_registration_path, class: "btn btn btn-outline-dark mb-3" %>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>:</th>
+                <td><%= current_merchant.email %></td>
+              </tr>
+              <tr>
+                <th>Store Name</th>
+                <th>:</th>
+                <td><%= current_merchant.merchant_name %></td>
+              </tr>
+              <tr>
+                <th>Store Address</th>
+                <th>:</th>
+                <td><%= current_merchant.merchant_address %></td>
+              </tr>
+              <tr>
+                <th>PIC Name</th>
+                <th>:</th>
+                <td><%= current_merchant.pic_name %></td>
+              </tr>
+              <tr>
+                <th>PIC Phone Number</th>
+                <th>:</th>
+                <td><%= current_merchant.pic_phone_number %></td>
+              </tr>
+              <tr>
+                <th>PIC Address</th>
+                <th>:</th>
+                <td><%= current_merchant.pic_address %></td>
+              </tr>
+              <tr>
+                <th>Status</th>
+                <th>:</th>
+                <td><%= current_merchant.status.humanize %></td>
+              </tr>
+              <tr>
+                <th>Website</th>
+                <th>:</th>
+                <td><%= current_merchant.website %></td>
+              </tr>
+              <tr>
+                <th>Instagram</th>
+                <th>:</th>
+                <td><%= current_merchant.instagram %></td>
+              </tr>
+              <tr>
+                <th>TikTok</th>
+                <th>:</th>
+                <td><%= current_merchant.tiktok %></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

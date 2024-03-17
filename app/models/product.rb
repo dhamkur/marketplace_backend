@@ -26,6 +26,9 @@ class Product < ApplicationRecord
   has_many :photos, foreign_key: "photoable_id", dependent: :destroy
   has_many :variants, class_name: "Product::Variant", dependent: :destroy
 
+  accepts_nested_attributes_for :photos, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :variants, reject_if: :all_blank, allow_destroy: true
+
   before_save :set_slug
 
   def set_slug

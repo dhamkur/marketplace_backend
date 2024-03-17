@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" %>
+<% end %>
+
 <div class="mb-3">
   <label class="form-label">Name</label>
   <%= f.text_field :name, class: "form-control" %>
@@ -28,4 +32,20 @@
   <label class="form-label">Status</label>
   <%= f.select(:status, options_for_select(Product::STATUS.map {|status| [status.humanize, status]}, f.object.status),
       { include_blank: "Select Status" }, { class: "form-control" }) %>
+</div>
+
+<div class="nested-form-photo">
+  <template data-nested-form-target="template">
+    <%= f.fields_for :photos, Photo.new, child_index: "NEW_RECORD" do |photo_fields| %>
+      <%= render "merchants/products/form_photo", f: photo_fields %>
+    <% end %>
+  </template>
+
+  <%= f.fields_for :photos do |photo_fields| %>
+    <%= render "merchants/products/form_photo", f: photo_fields %>
+  <% end %>
+
+  <div data-nested-form-target="target"></div>
+
+  <button type="button" class="btn btn-outline-dark" data-action="nested-form#add">Add Photo</button>
 </div>

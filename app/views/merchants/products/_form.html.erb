@@ -24,8 +24,9 @@
 
 <div class="mb-3">
   <label class="form-label">Category</label>
-  <%= f.select(:category_id, options_for_select(Product::STATUS.map {|status| [status.humanize, status]}, f.object.status),
-      { include_blank: "Select Category" }, { class: "form-control" }) %>
+  <%= f.select(:category_id, options_for_select({}, f.object.category_id),
+      { include_blank: "Select Category" }, { id: "tom-select", url: merchants_categories_url,
+      param: "?name=", selected_data: { id: f.object.category_id, name: f.object.category.name }.to_json, data: { controller: "select" } }) %>
 </div>
 
 <div class="mb-3">

@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
   devise_scope :merchant do
     namespace :merchants do
+      resources :categories, only: [:index, :show]
       resources :campaigns
       resources :dashboards, only: :index
       resources :orders, only: [:index, :show]

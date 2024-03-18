@@ -35,18 +35,38 @@
       { include_blank: "Select Status" }, { class: "form-control" }) %>
 </div>
 
-<div class="nested-form-photo">
-  <template data-nested-form-target="template">
+<hr/>Product Variants<br/><br/>
+
+<div data-controller="nested-form" data-nested-form-wrapper-selector-value=".variants-form-wrapper">
+  <template data-nested-form-target="template" data-model-template="variants">
+    <%= f.fields_for :variants, Product::Variant.new, child_index: "NEW_RECORD" do |variant_fields| %>
+      <%= render "merchants/products/form/variant", f: variant_fields %>
+    <% end %>
+  </template>
+
+  <%= f.fields_for :variants do |variant_fields| %>
+    <%= render "merchants/products/form/variant", f: variant_fields %>
+  <% end %>
+
+  <div data-nested-form-target="target" data-model-target="variants"></div>
+
+  <button type="button" class="btn btn-outline-dark btn-sm" data-action="nested-form#add">Add Variant</button>
+</div>
+
+<hr/>Photos<br/><br/>
+
+<div data-controller="nested-form" data-nested-form-wrapper-selector-value=".photos-form-wrapper">
+  <template data-nested-form-target="template" data-model-template="photos">
     <%= f.fields_for :photos, Photo.new, child_index: "NEW_RECORD" do |photo_fields| %>
-      <%= render "merchants/products/form_photo", f: photo_fields %>
+      <%= render "merchants/products/form/photo", f: photo_fields %>
     <% end %>
   </template>
 
   <%= f.fields_for :photos do |photo_fields| %>
-    <%= render "merchants/products/form_photo", f: photo_fields %>
+    <%= render "merchants/products/form/photo", f: photo_fields %>
   <% end %>
 
-  <div data-nested-form-target="target"></div>
+  <div data-nested-form-target="target" data-model-target="photos"></div>
 
-  <button type="button" class="btn btn-outline-dark" data-action="nested-form#add">Add Photo</button>
+  <button type="button" class="btn btn-outline-dark btn-sm" data-action="nested-form#add">Add Photo</button>
 </div>

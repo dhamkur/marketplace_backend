@@ -10,7 +10,6 @@
 #  delivery_fee           :decimal(, )      default(0.0)
 #  total_amount           :decimal(, )      default(0.0)
 #  delivery_tracking_code :string
-#  status                 :string
 #  delivery_method        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -25,7 +24,6 @@ class Order::Item < ApplicationRecord
   belongs_to :variant, class_name: "Product::Variant", foreign_key: "product_variant_id"
 
   validates :delivery_method, presence: true, on: :update
-  validates :status, inclusion: { in: Transaction::ORDER }
 
   before_validation :set_status
 

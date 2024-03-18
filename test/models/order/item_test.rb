@@ -10,7 +10,6 @@
 #  delivery_fee           :decimal(, )      default(0.0)
 #  total_amount           :decimal(, )      default(0.0)
 #  delivery_tracking_code :string
-#  status                 :string
 #  delivery_method        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

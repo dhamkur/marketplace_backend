@@ -1,0 +1,26 @@
+<div class="variants-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div class="mb-3">
+    <div class="row">
+      <div class="col-3">
+        <label>Name</label>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="col-3">
+        <label>Discount</label>
+        <%= f.number_field :discount, class: "form-control" %>
+      </div>
+      <div class="col-3">
+        <label>Stock</label>
+        <%= f.number_field :stock, class: "form-control" %>
+        <%= f.hidden_field :_destroy %>
+      </div>
+      <div class="col-3">
+        <label>Price Amount</label>
+        <div class="input-group">
+          <%= f.number_field :amount, class: "form-control", min: 0 %>
+          <button type="button" class="btn btn-danger btn-sm" data-action="nested-form#remove">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

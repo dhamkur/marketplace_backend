@@ -25,6 +25,7 @@
 #  xendit_external_id :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  formatted_response :jsonb
 #
 require "test_helper"
 

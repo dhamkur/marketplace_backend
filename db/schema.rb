@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_21_065717) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_18_121355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -155,7 +155,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_21_065717) do
     t.decimal "delivery_fee", default: "0.0"
     t.decimal "total_amount", default: "0.0"
     t.string "delivery_tracking_code"
-    t.string "status"
     t.string "delivery_method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -210,7 +209,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_21_065717) do
     t.decimal "amount", default: "0.0"
     t.decimal "discount", default: "0.0"
     t.integer "stock", default: 0
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_product_variants_on_product_id"

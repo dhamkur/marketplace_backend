@@ -8,7 +8,6 @@
 #  amount     :decimal(, )      default(0.0)
 #  discount   :decimal(, )      default(0.0)
 #  stock      :integer          default(0)
-#  status     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

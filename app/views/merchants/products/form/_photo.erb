@@ -1,4 +1,4 @@
-<div class="nested-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+<div class="photos-form-wrapper" data-new-record="<%= f.object.new_record? %>">
   <div class="mb-3">
     <div class="card">
       <div class="card-body">
@@ -10,10 +10,11 @@
           <% end %>
 
           <%= f.file_field :image, class: "form-control" %><br/>
+          <%= f.hidden_field :_destroy %>
         </div>
 
         <div class="d-grid">
-          <button type="button" class="btn btn-danger" data-action="nested-form#remove">Remove Photo</button>
+          <button type="button" class="btn btn-danger btn-sm" data-action="nested-form#remove">Remove Photo</button>
         </div>
       </div>
     </div>

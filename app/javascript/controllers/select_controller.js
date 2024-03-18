@@ -33,7 +33,7 @@ export default class extends Controller {
         option: function (item, escape) {
           return `
             <div class="mb-1">
-              <span class="h5">
+              <span>
                 ${escape(item.name)}
               </span>
             </div>
@@ -42,7 +42,7 @@ export default class extends Controller {
         item: function (item, escape) {
           return `
             <div class="mb-1">
-              <span class="h5">
+              <span>
                 ${escape(item.name)}
               </span>
             </div>

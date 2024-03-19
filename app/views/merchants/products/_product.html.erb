@@ -14,7 +14,7 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <%= link_to "Detail", merchants_product_path(product),
+          <%= link_to "Detail", product_path(product.slug),
               class: "dropdown-item", data: { turbo: false } %>
         </li>
         <li>

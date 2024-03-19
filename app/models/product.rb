@@ -23,7 +23,7 @@ class Product < ApplicationRecord
   belongs_to :merchant
   belongs_to :category
 
-  has_many :photos, foreign_key: "photoable_id", dependent: :destroy
+  has_many :photos, class_name: "Photo", inverse_of: :photoable, foreign_key: "photoable_id", dependent: :destroy
   has_many :variants, class_name: "Product::Variant", dependent: :destroy
 
   accepts_nested_attributes_for :photos, reject_if: :all_blank, allow_destroy: true

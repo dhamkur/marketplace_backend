@@ -1,4 +1,28 @@
 class Merchants::ProductsController < MerchantController
+  def create
+    @object = @class.new(object_params)
+
+    if @object.save
+      simple_stream("prepend", "lists", @object)
+    else
+      redirect_back(
+        fallback_location: @config[:redirect_location],
+        alert: @object.errors.full_messages
+      )
+    end
+  end
+
+  def update
+    if @object.update(object_params)
+      simple_stream("replace", @object, @object)
+    else
+      redirect_back(
+        fallback_location: @config[:redirect_location],
+        alert: @object.errors.full_messages
+      )
+    end
+  end
+
   private
 
   def find_query
@@ -24,10 +48,9 @@ class Merchants::ProductsController < MerchantController
     params.require(:product).permit(
       :name, :description, :starting_price, :delivery_fee,
       :category_id, :status, photos_attributes: [
-        :id, :_destroy, :photoable_id,
-        :photoable_type, :image, :is_thumbnail
+        :id, :_destroy, :image, :is_thumbnail
       ], variants_attributes: [
-        :id, :_destroy, :product_id, :name, :amount,
+        :id, :_destroy, :name, :amount,
         :discount, :stock, :status
       ]
     )

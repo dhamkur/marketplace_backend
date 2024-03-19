@@ -1,0 +1,34 @@
+<div class="photos-form-wrapper" data-new-record="<%= f.object.new_record? %>">
+  <div class="mb-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="text-center mb-4">
+          <strong>Insert Photo</strong><br/><br/>
+
+          <% if f.object.image.present? %>
+            <%= image_tag(f.object.image.url, class: "img-fluid", width: "200px", height: "200px;") %>
+          <% end %>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <%= f.file_field :image, class: "form-control" %><br/>
+            <%= f.hidden_field :_destroy %>
+          </div>
+          <div class="col-6">
+            <div class="form-check mt-2">
+              <%= f.check_box :is_thumbnail, class: "form-check-input", id: "is_thumbnail" %>
+              <label class="form-check-label" for="is_thumbnail">
+                Set as Thumbnail
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-grid">
+          <button type="button" class="btn btn-danger btn-sm" data-action="nested-form#remove">Remove Photo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

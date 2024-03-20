@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   devise_scope :admin do
     namespace :admins do
+      resources :advertisements
       resources :banks
       resources :categories
       resources :contacts

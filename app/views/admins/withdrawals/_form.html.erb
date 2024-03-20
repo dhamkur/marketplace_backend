@@ -1,7 +1,7 @@
 <div class="mb-3">
   <label class="form-label">Status</label>
   <%= f.select(:promo_type, options_for_select(Transaction::STATUS.map {|status| [status.humanize, status]}, f.object.status),
-      { include_blank: "Select Status" }, { class: "form-control" }) %>
+      { include_blank: "Select Status" }, { class: "form-select" }) %>
 </div>
 
 <div class="mb-3"></div>

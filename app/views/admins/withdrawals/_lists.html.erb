@@ -1,20 +1,24 @@
 <%= turbo_frame_tag "tables" do %>
-  <div class="table-responsive mb-5">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Code</th>
-          <th>Amount</th>
-          <th>Status</th>
-          <th>Created At</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="lists">
-        <%= render @objects %>
-      </tbody>
-    </table>
-  </div>
+  <% if @objects.present? %>
+    <div class="table-responsive mb-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="lists">
+          <%= render @objects %>
+        </tbody>
+      </table>
+    </div>
 
-  <%= render "shared/pagy", pagy: @pagy %>
+    <%= render "shared/pagy", pagy: @pagy %>
+  <% else %>
+    <%= render "shared/empty_data" %>
+  <% end %>
 <% end %>

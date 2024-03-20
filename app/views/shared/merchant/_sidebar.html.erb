@@ -1,6 +1,8 @@
 <div class="list-group">
   <%= link_to "My Dashboards", merchants_dashboards_path,
       class: "list-group-item list-group-item-action #{menu_condition("merchants/dashboards", "active")}" %>
+  <%= link_to "My Campaigns", merchants_campaigns_path,
+      class: "list-group-item list-group-item-action #{menu_condition("merchants/campaigns", "active")}" %>
   <%= link_to "My Wallets", merchants_wallets_path,
       class: "list-group-item list-group-item-action #{menu_condition("merchants/wallets", "active")}" %>
   <%= link_to "My Orders", merchants_orders_path,

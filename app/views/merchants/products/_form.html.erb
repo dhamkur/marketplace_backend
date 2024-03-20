@@ -32,7 +32,7 @@
 <div class="mb-3">
   <label class="form-label">Status</label>
   <%= f.select(:status, options_for_select(Product::STATUS.map {|status| [status.humanize, status]}, f.object.status),
-      { include_blank: "Select Status" }, { class: "form-control" }) %>
+      { include_blank: "Select Status" }, { class: "form-select" }) %>
 </div>
 
 <hr/>Product Variants<br/><br/>

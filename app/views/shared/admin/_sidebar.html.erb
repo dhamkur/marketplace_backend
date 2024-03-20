@@ -1,4 +1,8 @@
 <div class="list-group">
+  <%= link_to "Advertisements", admins_advertisements_path,
+      class: "list-group-item list-group-item-action #{menu_condition("admins/advertisements", "active")}" %>
+</div>
+<div class="list-group">
   <%= link_to "Banks", admins_banks_path,
       class: "list-group-item list-group-item-action #{menu_condition("admins/banks", "active")}" %>
 </div>

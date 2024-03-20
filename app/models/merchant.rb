@@ -35,6 +35,7 @@ class Merchant < ApplicationRecord
   has_one :wallet, dependent: :destroy, foreign_key: "userable_id"
 
   has_many :products, dependent: :destroy
+  has_many :campaigns, dependent: :destroy
 
   after_create :set_wallet
 end

@@ -9,7 +9,7 @@
 <div class="mb-3">
   <label class="form-label">Type</label>
   <%= f.select(:tax_type, options_for_select(Tax::TYPE.map {|type| [type.humanize, type]}, f.object.tax_type),
-      { include_blank: "Select Type" }, { class: "form-control" }) %>
+      { include_blank: "Select Type" }, { class: "form-select" }) %>
 </div>
 
 <div class="mb-3"></div>

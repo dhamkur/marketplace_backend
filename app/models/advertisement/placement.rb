@@ -14,4 +14,6 @@
 #
 class Advertisement::Placement < ApplicationRecord
   belongs_to :advertisement
+
+  include ImageUploader::Attachment(:image)
 end

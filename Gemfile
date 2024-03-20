@@ -24,6 +24,7 @@ gem 'xendit', '~> 1.0'
 gem 'dotenv-rails', '~> 2.8', '>= 2.8.1'
 gem 'country_select', '~> 8.0'
 gem 'rack-attack', '~> 6.7'
+gem 'ahoy_matey', '~> 5.0', '>= 5.0.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

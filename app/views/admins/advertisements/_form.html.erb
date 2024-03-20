@@ -1,0 +1,48 @@
+<div class="mb-3">
+  <label class="form-label">Name</label>
+  <%= f.text_field :name, class: "form-control" %>
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Page Type</label>
+  <%= f.select(:page_type, options_for_select(
+      Advertisement::TYPE.map {|page_type| [page_type.humanize, page_type]},
+      f.object.page_type), { include_blank: "Select Page Type" }, { class: "form-select" }) %>
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Starting Price</label>
+  <%= f.number_field :starting_price, class: "form-control" %>
+</div>
+
+<div class="mb-3">
+  <div class="form-check">
+    <%= f.check_box :is_available, class: "form-check-input", id: "is_available" %>
+    <label class="form-check-label" for="is_available">
+      Availability
+    </label>
+  </div>
+</div>
+
+<hr/>Placements<br/><br/>
+
+<div data-controller="nested-form" data-nested-form-wrapper-selector-value=".placements-form-wrapper">
+  <template data-nested-form-target="template" data-model-template="placements">
+    <%= f.fields_for :placements, Advertisement::Placement.new, child_index: "NEW_RECORD" do |placement_fields| %>
+      <%= render "admins/advertisements/form/placement", f: placement_fields %>
+    <% end %>
+  </template>
+
+  <%= f.fields_for :placements do |placement_fields| %>
+    <%= render "admins/advertisements/form/placement", f: placement_fields %>
+  <% end %>
+
+  <div data-nested-form-target="target" data-model-target="placements"></div>
+
+  <button type="button" class="btn btn-outline-dark btn-sm mt-3" data-action="nested-form#add">Add Placement</button>
+</div>
+
+<div class="mb-3"></div>
+
+<button type="button" class="btn btn-secondary" data-action="modal#hideModal" aria-label="Close">Back</button>
+<button type="submit" class="btn btn-primary">Save</button>

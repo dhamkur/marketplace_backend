@@ -1,0 +1,25 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" %>
+<% end %>
+
+<div class="row">
+  <div class="col-3">
+    <%= render "shared/admin/sidebar" %>
+  </div>
+  <div class="col-9">
+    <div class="d-flex">
+      <%= search_form_for @search, url: admins_advertisements_path, html: { class: "me-auto" }, data: { turbo_frame: "tables",
+          turbo_stream: true, controller: "form", form_target: "source" } do |f| %>
+        <div class="mb-3">
+          <%= f.search_field :name_cont, class: "form-control", placeholder: "Search...",
+              data: { action: "input->form#search" } %>
+        </div>
+      <% end %>
+      <div class="mb-3">
+        <%= link_to "Add Advertisement", new_admins_advertisement_path,
+            class: "btn btn-primary", data: { turbo_frame: "modal" } %>
+      </div>
+    </div>
+    <%= render "lists" %>
+  </div>
+</div>

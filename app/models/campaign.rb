@@ -18,4 +18,6 @@
 class Campaign < ApplicationRecord
   belongs_to :merchant
   belongs_to :advertisement_placement
+
+  include ImageUploader::Attachment(:image)
 end

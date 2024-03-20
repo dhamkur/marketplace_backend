@@ -12,7 +12,7 @@
     <div class="mb-3">
       <label class="form-label">Bank</label>
       <%= f.select(:bank_id, options_for_select(Bank.all.order(name: :asc).map {|bank| [bank.name, bank.id]}, f.object.bank_id),
-          { include_blank: "Select Bank" }, { class: "form-control" }) %>
+          { include_blank: "Select Bank" }, { class: "form-select" }) %>
     </div>
 
     <div class="d-grid"><%= f.submit "Save", class: "btn btn-primary" %></div>

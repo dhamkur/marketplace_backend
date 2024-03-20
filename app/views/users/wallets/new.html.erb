@@ -9,7 +9,7 @@
         <div class="mb-3">
           <label class="form-label">Bank</label>
           <%= f.select(:bank_name, options_for_select(Bank.all.order(name: :asc).map {|bank| [bank.name, bank.name]}, current_user.user_bank&.bank&.name),
-              { include_blank: "Select Bank", value: current_user.user_bank&.bank&.name }, { class: "form-control" }) %>
+              { include_blank: "Select Bank", value: current_user.user_bank&.bank&.name }, { class: "form-select" }) %>
         </div>
         <div class="mb-3">
           <label class="form-label">Account Holder</label>

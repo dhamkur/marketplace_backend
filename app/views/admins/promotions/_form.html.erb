@@ -13,7 +13,7 @@
 <div class="mb-3">
   <label class="form-label">Type</label>
   <%= f.select(:promo_type, options_for_select(Promotion::TYPE.map {|type| [type.humanize, type]}, f.object.promo_type),
-      { include_blank: "Select Type" }, { class: "form-control" }) %>
+      { include_blank: "Select Type" }, { class: "form-select" }) %>
 </div>
 
 <div class="mb-3"></div>

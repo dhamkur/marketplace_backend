@@ -12,4 +12,8 @@
 #
 class Advertisement < ApplicationRecord
   TYPE = ["home_page", "product_page", "cart_page", "checkout_page"]
+
+  has_many :placements, class_name: "Advertisement::Placement", foreign_key: "advertisement_id", dependent: :destroy
+
+  accepts_nested_attributes_for :placements, reject_if: :all_blank, allow_destroy: true
 end

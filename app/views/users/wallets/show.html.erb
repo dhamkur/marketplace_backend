@@ -1,7 +1,7 @@
 <% content_for :modal_content do %>
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">Transaction Detail</h5>
+      <h5 class="modal-title"><%= params[:type] == "proof_of_transfer" ? "Proof of Transfer" : "Transaction Detail" %></h5>
       <button type="button" class="btn-close" data-action="modal#hideModal" aria-label="Close"></button>
     </div>
     <div class="modal-body">

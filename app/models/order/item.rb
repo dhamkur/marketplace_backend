@@ -14,8 +14,11 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  product_variant_id     :bigint
+#  status                 :string
 #
 class Order::Item < ApplicationRecord
+  STATUS = ["processing", "on_delivery", "received"]
+
   include General
   include Scopeable
 

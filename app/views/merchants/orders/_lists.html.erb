@@ -1,20 +1,28 @@
 <%= turbo_frame_tag "tables" do %>
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Code</th>
-          <th>Status</th>
-          <th>Total Payment</th>
-          <th>Created At</th>
-          <th>Updated At</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render partial: "order", collection: @orders %>
-      </tbody>
-    </table>
-  </div>
+  <% if @objects.present? %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Status</th>
+            <th>Total Payment</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "order", collection: @orders %>
+        </tbody>
+      </table>
+    </div>
 
-  <%= render "shared/pagy", pagy: @pagy %>
+    <div class="mb-4"></div>
+
+    <%= render "shared/pagy", pagy: @pagy %>
+  <% else %>
+    <div class="text-center">
+      <h1>Data Not Found</h1>
+    </div>
+  <% end %>
 <% end %>

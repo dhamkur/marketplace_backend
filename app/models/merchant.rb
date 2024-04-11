@@ -32,7 +32,7 @@ class Merchant < ApplicationRecord
 
   STATUS = ["pending", "approved", "rejected"]
 
-  has_one :wallet, dependent: :destroy, foreign_key: "userable_id"
+  has_one :wallet, -> { where("wallets.userable_type": "Merchant") }, dependent: :destroy, foreign_key: "userable_id"
 
   has_many :products, dependent: :destroy
   has_many :campaigns, dependent: :destroy

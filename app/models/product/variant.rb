@@ -10,6 +10,7 @@
 #  stock      :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  status     :string
 #
 class Product::Variant < ApplicationRecord
   STATUS = ["in_stock", "out_of_stock"]

@@ -10,5 +10,8 @@
 #  updated_at    :datetime         not null
 #
 class Wallet < ApplicationRecord
+  include General
+
   belongs_to :userable, polymorphic: true
+  has_many :histories, dependent: :destroy
 end

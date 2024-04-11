@@ -18,19 +18,22 @@ class Users::PaymentsController < UserController
 
         redirect_to users_orders_path, notice: "Your payment has been verified"
       else
-        redirect_to users_orders_path, alert: "Your wallet amount insufficient"
+        redirect_back(
+          fallback_location: users_checkout_path(order),
+          alert: "Your wallet amount insufficient"
+        )
       end
     when "online-payment"
       if order.xendit_invoice_url.blank?
         xendit = Xendit::Invoice.create(invoice_params(order))
-  
+
         order.update(
           payment_method: "online-payment",
           xendit_external_id: xendit["id"],
           xendit_invoice_url: xendit["invoice_url"]
         )
       end
-  
+
       redirect_to order.xendit_invoice_url, allow_other_host: true
     else
       redirect_back(

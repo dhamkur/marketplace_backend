@@ -13,7 +13,33 @@ class Users::OrdersController < UserController
 
   def show;end
 
-  def update;end # in here we will later implement to cancel function and received order
+   # in here we will later implement to cancel function and received order
+  def update
+    case params[:type]
+    when "cancel"
+      @order.update(status: "canceled")
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream do
+          redirect_back(fallback_location: users_orders_path)
+        end
+      end
+    when "completed"
+      @order.update(status: "completed")
+      @order.items.each do |item|
+        wallet   = merchant.wallet
+        merchant = item.product.merchant
+
+        wallet.update(amount: wallet.amount + item.total_amount)
+      end
+    else
+      redirect_back(
+        fallback_location: users_orders_path,
+        alert: "You are not allowed to delete the type"
+      )
+    end
+  end
 
   private
 

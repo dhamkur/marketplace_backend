@@ -1,7 +1,11 @@
 <tr id="<%= dom_id(history) %>">
   <td><%= history.code %></td>
   <td><%= money(history.amount) %></td>
-  <td><%= history.status.humanize %></td>
+  <td>
+    <span class="badge rounded-pill <%= transaction_status(history.status) %>">
+      <%= history.status.humanize %>
+    </span>
+  </td>
   <td><%= history.created_at %></td>
   <td>
     <div class="dropdown">

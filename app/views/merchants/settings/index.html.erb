@@ -42,7 +42,11 @@
               <tr>
                 <th>Status</th>
                 <th>:</th>
-                <td><%= current_merchant.status.humanize %></td>
+                <td>
+                  <span class="badge rounded-pill <%= transaction_status(current_merchant.status) %>">
+                    <%= current_merchant.status.humanize %>
+                  </span>
+                </td>
               </tr>
               <tr>
                 <th>Website</th>

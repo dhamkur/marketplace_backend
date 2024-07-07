@@ -2,7 +2,11 @@
   <td><%= product.name %></td>
   <td><%= product.category.name %></td>
   <td><%= money(product.starting_price) %></td>
-  <td class="text-capitalize"><%= product.status.humanize %></td>
+  <td class="text-capitalize">
+    <span class="badge rounded-pill <%= transaction_status(product.status) %>">
+      <%= product.status.humanize %>
+    </span>
+  </td>
   <td class="text-center"><%= date_time(product.created_at) %></td>
   <td class="text-center"><%= date_time(product.updated_at) %></td>
   <td>

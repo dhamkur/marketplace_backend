@@ -25,4 +25,15 @@ module ApplicationHelper
   def date_time(date)
     date.strftime("%d %B %Y, %H:%M:%S")
   end
+
+  def transaction_status(status)
+    case status
+    when "pending"
+      return "text-bg-warning text-white"
+    when "canceled", "expired"
+      return "text-bg-danger"
+    when "success", "completed"
+      return "text-bg-success"
+    end
+  end
 end

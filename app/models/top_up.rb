@@ -31,11 +31,14 @@ class TopUp < ApplicationRecord
     set_history(self.userable, self, "in", self.amount)
   end
 
-  def completed
+  def action_status(param_status)
     wallet = self.userable.wallet
 
-    self.update(status: "completed")
-    self.wallet_history.update(status: "completed")
-    wallet.update(amount: wallet.amount + self.amount)
+    self.update(status: param_status)
+    self.wallet_history.update(status: param_status)
+
+    if param_status == "completed"
+      wallet.update(amount: wallet.amount + self.amount)
+    end
   end
 end

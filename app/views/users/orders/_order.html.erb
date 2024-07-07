@@ -1,7 +1,11 @@
 <tr>
   <td><%= order.code %></td>
   <td><%= money(order.total_payment) %></td>
-  <td class="text-capitalize"><%= order.status.humanize %></td>
+  <td class="text-capitalize">
+    <span class="badge rounded-pill <%= transaction_status(order.status) %>">
+      <%= order.status.humanize %>
+    </span>
+  </td>
   <td class="text-center"><%= date_time(order.created_at) %></td>
   <td>
     <div class="dropdown">

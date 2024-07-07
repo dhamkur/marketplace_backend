@@ -1,6 +1,10 @@
 <tr>
   <td><%= order.code %></td>
-  <td><%= order.status.humanize %></td>
+  <td>
+    <span class="badge rounded-pill <%= transaction_status(order.status) %>">
+      <%= order.status.humanize %>
+    </span>
+  </td>
   <td><%= money(order.total_payment) %></td>
   <td><%= date_time(order.created_at) %></td>
   <td><%= date_time(order.updated_at) %></td>

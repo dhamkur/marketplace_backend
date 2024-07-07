@@ -12,7 +12,7 @@ class Admins::TopUpsController < AdminController
   end
 
   def update
-    if @object.completed
+    if @object.action_status(params[:status])
       simple_stream("replace", @object, @object)
     else
       messages = @object.errors.full_messages

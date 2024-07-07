@@ -1,4 +1,4 @@
 module Transaction
-  STATUS = ["pending", "canceled", "completed"]
+  STATUS = ["pending", "rejected", "canceled", "completed"]
   ORDER  = ["pending", "payment_verified", "canceled", "processing", "on_delivery", "completed"]
 end

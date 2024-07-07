@@ -18,7 +18,11 @@
     <tr>
       <td class="text-start">Status</td>
       <td class="text-center">:</td>
-      <td class="fw-bold"><%= @object.status.humanize %></td>
+      <td class="fw-bold">
+        <span class="badge rounded-pill <%= transaction_status(@object.status) %>">
+          <%= @object.status.humanize %>
+        </span>
+      </td>
     </tr>
     <tr>
       <td class="text-start">Date & Time</td>

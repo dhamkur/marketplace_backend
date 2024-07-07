@@ -93,20 +93,22 @@
             </div>
 
             <% if @histories.present? %>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <td>Transaction ID</td>
-                    <td>Status</td>
-                    <td>Amount</td>
-                    <td>Created At</td>
-                    <td>Action</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= render partial: "history", collection: @histories %>
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table class="table default-height-table">
+                  <thead>
+                    <tr>
+                      <td>Transaction ID</td>
+                      <td>Status</td>
+                      <td>Amount</td>
+                      <td>Created At</td>
+                      <td>Action</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%= render partial: "history", collection: @histories %>
+                  </tbody>
+                </table>
+              </div>
 
               <%= render "shared/pagy", pagy: @pagy %>
             <% else %>

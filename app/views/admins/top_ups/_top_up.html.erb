@@ -16,6 +16,12 @@
               class: "dropdown-item", data: { turbo_frame: "modal" } %>
         </li>
         <li>
+          <%= link_to "Canceled", admins_top_up_path(top_up),
+              class: "dropdown-item", data: { turbo_method: :put,
+                turbo_confirm: "Are you sure you want to cancel this Top Up?"
+              } unless top_up.status == "canceled" %>
+        </li>
+        <li>
           <%= link_to "Completed", admins_top_up_path(top_up),
               class: "dropdown-item", data: { turbo_method: :put,
                 turbo_confirm: "Are you sure you want to complete this Top Up?"

@@ -31,6 +31,7 @@
       <table class="table table-borderless">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Item</th>
             <th>Total</th>
           </td>
@@ -38,9 +39,12 @@
         <tbody>
           <% @order.items.each do |item| %>
             <tr>
+              <td><%= item.id %></td>
               <td>
                 <strong>Store</strong>: <%= item.product.merchant.merchant_name %><br/>
-                <%= item.product.name %> - <%= item.quantity %> x <%= money(item.amount) %>
+                <small>
+                  <%= item.product.name %> - <%= item.quantity %> x <%= money(item.amount) %>
+                </small>
               </td>
               <td><%= money(item.total_amount) %></td>
             </td>
@@ -51,13 +55,6 @@
       <div class="border-bottom mt-3 mb-3"></div>
 
       <table class="table table-borderless">
-        <% unless @order.used_wallet == 0.0 %>
-          <tr>
-            <td>Used Wallet</td>
-            <td></td>
-            <td class="text-end"><%= money(@order.used_wallet) %></td>
-          </tr>
-        <% end %>
         <% unless @order.discount == 0.0 %>
           <tr>
             <td>Discount</td>
@@ -88,12 +85,24 @@
           <td></td>
           <td class="text-end"><%= money(@order.sub_total) %></td>
         </tr>
-        <tr>
+        <tr class="border-top">
           <td class="fw-bold">Total Payment</td>
           <td></td>
           <td class="text-end fw-bold"><%= money(@order.total_payment) %></td>
         </tr>
       </table>
+
+      <% unless @order.used_wallet == 0.0 %>
+        <div class="text-center mt-5">
+          <p>
+            <small>
+              Remaining balance <strong>@ <%= date_time(@order.created_at) %></strong>
+            </small>
+            <br/>
+            <strong><%= money(@order.used_wallet) %></strong>
+          </p>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

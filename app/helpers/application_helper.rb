@@ -30,6 +30,8 @@ module ApplicationHelper
     case status
     when "pending"
       return "text-bg-warning text-white"
+    when "payment_verified", "processing", "on_delivery"
+      return "text-bg-primary"
     when "canceled", "expired"
       return "text-bg-danger"
     when "success", "completed"

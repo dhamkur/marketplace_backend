@@ -5,6 +5,6 @@ default: &default
 
 development:
   <<: *default
-  database: marketplace_backend
+  database: <%= ENV["DB_NAME"] %>
   username: <%= ENV["DB_USERNAME"] %>
   password: <%= ENV["DB_PASSWORD"] %>

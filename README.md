@@ -48,3 +48,20 @@ Thank you for purchasing this product, We really appreciate for your choice to c
 - E-Wallet payment campaign, withdrawal and top-up
 - Create product
 - Receive orders / Process orders
+
+### How to run docker?
+
+1. Build and run containers
+
+```
+docker-compose build
+docker-compose up
+
+```
+
+2. Create database
+
+```
+docker-compose run web rake db:create
+docker-compose run web rails g model User name:string
+```

@@ -36,6 +36,7 @@ class Order < ApplicationRecord
   belongs_to :tax, optional: true
 
   has_many :items, dependent: :destroy
+  has_many :products, through: :items
   has_one :wallet_history, class_name: "Wallet::History", foreign_key: "transactionable_id"
 
   validates :sub_total, :total_payment, presence: true
@@ -43,7 +44,7 @@ class Order < ApplicationRecord
 
   scope :by_status, -> (data) { where(status: data).order(created_at: :desc) }
   scope :by_merchant, -> (merchant_id) {
-    joins(items: [:product]).where("products.merchant_id = ?", merchant_id).newest
+    joins(:products).where("products.merchant_id = #{merchant_id}").newest
   }
 
   before_validation do

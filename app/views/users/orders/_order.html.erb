@@ -11,6 +11,11 @@
         Action
       </button>
       <ul class="dropdown-menu">
+        <% if order.status == "pending" %>
+          <li>
+            <%= link_to "Continue Payment", users_checkout_path(order), class: "dropdown-item", target: "_top" %>
+          </li>
+        <% end %>
         <li>
           <%= link_to "Detail", users_order_path(order),
               class: "dropdown-item", data: { turbo_frame: "modal" } %>

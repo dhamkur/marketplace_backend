@@ -3,7 +3,7 @@
     <tr>
       <td>Total Items</td>
       <td>:</td>
-      <td class="text-end"><%= current_user.cart.items.selected.size %></td>
+      <td class="text-end"><%= current_user.cart.items.selected.sum(:quantity) %></td>
     </tr>
     <tr>
       <td>Sub Total</td>
